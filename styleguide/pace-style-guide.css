@@ -56,10 +56,10 @@
 /* ================================================
    Dark Theme Colors
    ================================================ */
-[data-theme="dark"] {
+body[data-theme="dark"] {
     /* Dark Theme Color Overrides */
-    --pace-primary-color: #EB9110;        /* Keep primary orange for brand consistency */
-    --pace-primary-dark: #d48209;         /* Keep primary dark for brand consistency */
+    --pace-primary-color: #CC7A00;        /* Dimmed orange for dark mode accessibility */
+    --pace-primary-dark: #B56A00;         /* Dimmed primary dark for dark mode */
     --pace-secondary-color: #9CA3AF;      /* Lighter secondary for dark theme */
     --pace-accent-color: #60A5FA;         /* Lighter blue for better contrast */
     --pace-background-color: #111827;     /* Dark background */
@@ -76,8 +76,8 @@
 @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]) {
         /* Only apply dark theme if user hasn't explicitly selected light */
-        --pace-primary-color: #EB9110;
-        --pace-primary-dark: #d48209;
+        --pace-primary-color: #2563eb;        /* Blue for testing dark mode */
+        --pace-primary-dark: #1d4ed8;         /* Darker blue for testing dark mode */
         --pace-secondary-color: #9CA3AF;
         --pace-accent-color: #60A5FA;
         --pace-background-color: #111827;
@@ -112,6 +112,11 @@
     max-width: 1200px;
     margin: 0 auto;
     padding: var(--pace-spacing-xl);
+}
+
+/* Header-specific container with reduced padding */
+.pace-app-header .pace-container {
+    padding: 0.625rem var(--pace-spacing-xl); /* ~10px top/bottom, keep horizontal padding */
 }
 
 .pace-container-sm {
