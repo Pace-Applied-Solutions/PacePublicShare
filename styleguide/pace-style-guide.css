@@ -74,7 +74,7 @@ body[data-theme="dark"] {
    System Preference Detection
    ================================================ */
 @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) {
+    body:not([data-theme="light"]) {
         /* Only apply dark theme if user hasn't explicitly selected light */
         --pace-primary-color: #F59E0B;        /* Bright orange for system dark mode */
         --pace-primary-dark: #D97706;         /* Darker orange for hovers and accents */
