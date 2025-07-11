@@ -1,5 +1,10 @@
 name: Azure Static Web Apps CI/CD
 
+# Prevent multiple concurrent runs for the same branch/PR
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 on:
   push:
     branches:
