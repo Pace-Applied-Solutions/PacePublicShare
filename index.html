@@ -165,7 +165,7 @@
         <!-- Header -->
         <header class="pace-index-header">
             <img src="./assets/logo/Pace-logo-orange.png" alt="Pace Applied Solutions" class="pace-index-logo">
-            <h1 class="pace-heading-1">Public Assets & Style Guide</h1>
+            <h1 class="pace-site-title">Public Assets & Style Guide</h1>
             <p class="pace-text-large pace-index-subtitle">
                 Official brand assets, design system, and implementation resources for Pace Applied Solutions projects.
             </p>
@@ -293,6 +293,91 @@
                     <strong>Welcome to the Interactive Style Guide!</strong>
                     <p>Browse all interactive components and code examples. Sign in to display your profile information. Copy any code snippet to use in your projects.</p>
                 </div>
+            </div>
+        </div>
+
+        <!-- Typography Hierarchy -->
+        <div class="pace-section">
+            <h2 class="pace-section-title">Typography Hierarchy</h2>
+            <p class="pace-section-description">
+                The Pace design system uses a clear font hierarchy with specific fonts for different content types. 
+                Use the site title font sparingly—once per page or content section.
+            </p>
+            
+            <div class="pace-grid pace-grid-1">
+                <div class="pace-card">
+                    <div class="pace-card-content">
+                        <h3 class="pace-heading-3">Font Usage Guide</h3>
+                        
+                        <!-- Site Title Example -->
+                        <div class="pace-typography-example">
+                            <h4 class="pace-heading-4">Site Title - Agency FB</h4>
+                            <p class="pace-text-small pace-text-light">Use sparingly - once per page or content section</p>
+                            <div class="pace-typography-sample">
+                                <h1 class="pace-site-title">Pace Applied Solutions</h1>
+                            </div>
+                        </div>
+                        
+                        <!-- Primary Heading Example -->
+                        <div class="pace-typography-example">
+                            <h4 class="pace-heading-4">Primary Headings - Bahnschrift Light Condensed</h4>
+                            <p class="pace-text-small pace-text-light">For main section headings and important content</p>
+                            <div class="pace-typography-sample">
+                                <h1 class="pace-heading-1">Primary Heading (H1)</h1>
+                            </div>
+                        </div>
+                        
+                        <!-- Secondary Headings Example -->
+                        <div class="pace-typography-example">
+                            <h4 class="pace-heading-4">Secondary Headings - Segoe UI</h4>
+                            <p class="pace-text-small pace-text-light">For subsections and content organization</p>
+                            <div class="pace-typography-sample">
+                                <h2 class="pace-heading-2">Secondary Heading (H2)</h2>
+                                <h3 class="pace-heading-3">Tertiary Heading (H3)</h3>
+                                <h4 class="pace-heading-4">Quaternary Heading (H4)</h4>
+                                <h5 class="pace-heading-5">Quinary Heading (H5)</h5>
+                            </div>
+                        </div>
+                        
+                        <!-- Body Text Example -->
+                        <div class="pace-typography-example">
+                            <h4 class="pace-heading-4">Body Text - Segoe UI</h4>
+                            <p class="pace-text-small pace-text-light">For general content and descriptions</p>
+                            <div class="pace-typography-sample">
+                                <p class="pace-text-large">Large body text for important descriptions</p>
+                                <p class="pace-text-body">Regular body text for content and descriptions</p>
+                                <p class="pace-text-small">Small text for captions and secondary information</p>
+                                <p class="pace-text-xs">Extra small text for fine print and metadata</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Typography Code Example -->
+            <div class="pace-code-example">
+                <h4 class="pace-heading-4">Typography HTML</h4>
+                <pre class="pace-pre"><code class="pace-code">&lt;!-- Site Title (Agency FB) - Use sparingly --&gt;
+&lt;h1 class="pace-site-title"&gt;Pace Applied Solutions&lt;/h1&gt;
+
+&lt;!-- Primary Heading (Bahnschrift Light Condensed) --&gt;
+&lt;h1 class="pace-heading-1"&gt;Primary Heading&lt;/h1&gt;
+
+&lt;!-- Secondary Headings (Segoe UI) --&gt;
+&lt;h2 class="pace-heading-2"&gt;Secondary Heading&lt;/h2&gt;
+&lt;h3 class="pace-heading-3"&gt;Tertiary Heading&lt;/h3&gt;
+&lt;h4 class="pace-heading-4"&gt;Quaternary Heading&lt;/h4&gt;
+&lt;h5 class="pace-heading-5"&gt;Quinary Heading&lt;/h5&gt;
+
+&lt;!-- Body Text (Segoe UI) --&gt;
+&lt;p class="pace-text-large"&gt;Large body text&lt;/p&gt;
+&lt;p class="pace-text-body"&gt;Regular body text&lt;/p&gt;
+&lt;p class="pace-text-small"&gt;Small text&lt;/p&gt;
+&lt;p class="pace-text-xs"&gt;Extra small text&lt;/p&gt;</code></pre>
+                <button class="pace-button pace-button-outline pace-button-copy" onclick="copyToClipboard(this.previousElementSibling.textContent)">
+                    <i class="fas fa-copy"></i>
+                    Copy Code
+                </button>
             </div>
         </div>
 

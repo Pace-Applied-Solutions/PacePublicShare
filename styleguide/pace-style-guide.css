@@ -22,7 +22,10 @@
     --pace-text-light: #666;
     --pace-border-color: #e5e5e5;
     --pace-shadow-color: rgba(0,0,0,0.08);
-    --pace-font-family: 'Aptos', 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+    /* Font Families */
+    --pace-font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+    --pace-font-family-heading: 'Bahnschrift Light Condensed', 'Bahnschrift Light', 'Bahnschrift', 'Arial Narrow', 'Helvetica Neue', Arial, sans-serif;
+    --pace-font-family-title: 'Agency FB', 'Arial Narrow', 'Helvetica Neue', Arial, sans-serif;
     
     /* Font Sizes */
     --pace-font-size-xs: 0.75rem;    /* 12px */
@@ -166,14 +169,28 @@ body[data-theme="dark"] {
 /* ================================================
    Typography
    ================================================ */
-.pace-heading-1 {
+
+/* Site Title - Agency FB font, used sparingly (once per page or content section) */
+.pace-site-title {
+    font-family: var(--pace-font-family-title);
     font-size: var(--pace-font-size-3xl);
-    font-weight: 700;
+    font-weight: 400;
     margin: 0 0 var(--pace-spacing-md) 0;
     color: var(--pace-text-color);
 }
 
+/* Primary Headings - Bahnschrift Light Condensed */
+.pace-heading-1 {
+    font-family: var(--pace-font-family-heading);
+    font-size: var(--pace-font-size-3xl);
+    font-weight: 300;
+    margin: 0 0 var(--pace-spacing-md) 0;
+    color: var(--pace-text-color);
+}
+
+/* Secondary Headings - Segoe UI */
 .pace-heading-2 {
+    font-family: var(--pace-font-family);
     font-size: var(--pace-font-size-2xl);
     font-weight: 600;
     margin: 0 0 var(--pace-spacing-md) 0;
@@ -181,6 +198,7 @@ body[data-theme="dark"] {
 }
 
 .pace-heading-3 {
+    font-family: var(--pace-font-family);
     font-size: var(--pace-font-size-xl);
     font-weight: 600;
     margin: 0 0 var(--pace-spacing-md) 0;
@@ -188,25 +206,68 @@ body[data-theme="dark"] {
 }
 
 .pace-heading-4 {
+    font-family: var(--pace-font-family);
     font-size: var(--pace-font-size-lg);
     font-weight: 600;
     margin: 0 0 var(--pace-spacing-sm) 0;
     color: var(--pace-text-color);
 }
 
+.pace-heading-5 {
+    font-family: var(--pace-font-family);
+    font-size: var(--pace-font-size-base);
+    font-weight: 600;
+    margin: 0 0 var(--pace-spacing-sm) 0;
+    color: var(--pace-text-color);
+}
+
+/* Body Text - Segoe UI */
 .pace-text-body {
+    font-family: var(--pace-font-family);
     font-size: var(--pace-font-size-base);
     margin: 0 0 var(--pace-spacing-md) 0;
 }
 
 .pace-text-small {
+    font-family: var(--pace-font-family);
     font-size: var(--pace-font-size-sm);
     color: var(--pace-text-light);
 }
 
 .pace-text-xs {
+    font-family: var(--pace-font-family);
     font-size: var(--pace-font-size-xs);
     color: var(--pace-text-light);
+}
+
+.pace-text-large {
+    font-family: var(--pace-font-family);
+    font-size: var(--pace-font-size-lg);
+    margin: 0 0 var(--pace-spacing-md) 0;
+}
+
+/* Typography Examples */
+.pace-typography-example {
+    margin: var(--pace-spacing-lg) 0;
+    padding: var(--pace-spacing-md);
+    border-left: 3px solid var(--pace-primary-color);
+    background: var(--pace-card-background);
+}
+
+.pace-typography-sample {
+    margin-top: var(--pace-spacing-sm);
+    padding: var(--pace-spacing-md);
+    border: 1px solid var(--pace-border-color);
+    border-radius: var(--pace-border-radius);
+    background: var(--pace-background-color);
+}
+
+.pace-typography-sample > * {
+    margin-bottom: var(--pace-spacing-sm);
+}
+
+.pace-typography-sample > *:last-child {
+    margin-bottom: 0;
 }
 
 /* ================================================
@@ -486,8 +547,9 @@ body[data-theme="dark"] {
 }
 
 .pace-brand-tagline {
+    font-family: var(--pace-font-family-title);
     font-size: var(--pace-font-size-2xl);
-    font-weight: 600;
+    font-weight: 400;
     margin-bottom: var(--pace-spacing-md);
 }
 
@@ -989,9 +1051,10 @@ body[data-theme="dark"] {
 }
 
 .pace-app-header-title {
+    font-family: var(--pace-font-family-title);
     margin: 0;
     font-size: 1rem;
-    font-weight: 600;
+    font-weight: 400;
     color: #fff;
 }
 
@@ -1336,8 +1399,9 @@ body[data-theme="dark"] {
 }
 
 .pace-brand-tagline {
+    font-family: var(--pace-font-family-title);
     font-size: var(--pace-font-size-2xl);
-    font-weight: 600;
+    font-weight: 400;
     margin-bottom: var(--pace-spacing-md);
 }
 
