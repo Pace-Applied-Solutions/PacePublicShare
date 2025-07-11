@@ -191,16 +191,10 @@ class PaceApp {
             signInBtn.addEventListener('click', () => this.handleSignIn());
         }
         
-        // Landing page sign out button
+        // Sign out button
         const signOutBtn = document.getElementById('signOutBtn');
         if (signOutBtn) {
             signOutBtn.addEventListener('click', () => this.handleSignOut());
-        }
-        
-        // Authenticated header sign out button
-        const authenticatedSignOutBtn = document.getElementById('authenticatedSignOutBtn');
-        if (authenticatedSignOutBtn) {
-            authenticatedSignOutBtn.addEventListener('click', () => this.handleSignOut());
         }
         
         // View examples button
@@ -220,7 +214,7 @@ class PaceApp {
      * Handle sign in action
      */
     async handleSignIn() {
-        if (this.auth) {
+        if (this.auth && this.auth.msalInstance) {
             try {
                 // Set loading state for sign in button
                 const signInBtn = document.getElementById('signInBtn');
@@ -239,6 +233,9 @@ class PaceApp {
             // Demo mode - show examples without auth
             this.showExamples();
             this.showNotification('Demo mode active - showing examples without authentication.', 'info');
+            
+            // Simulate authenticated UI for demo purposes
+            this.simulateAuthenticatedState();
         }
     }
 
@@ -332,22 +329,13 @@ class PaceApp {
         const signInBtn = document.getElementById('signInBtn');
         const userProfile = document.getElementById('userProfile');
         const viewExamplesBtn = document.getElementById('viewExamplesBtn');
-        const authenticatedHeader = document.getElementById('authenticatedHeader');
-        const authenticatedSignOutBtn = document.getElementById('authenticatedSignOutBtn');
         
         if (authenticated && account) {
             // User is authenticated - show authenticated UI
             if (signInBtn) signInBtn.classList.add('pace-hidden');
             if (userProfile) {
                 userProfile.classList.remove('pace-hidden');
-                this.updateUserProfile(account, 'userProfile');
-            }
-            if (authenticatedHeader) {
-                authenticatedHeader.classList.remove('pace-hidden');
-                this.updateUserProfile(account, 'authenticatedUserProfile');
-            }
-            if (authenticatedSignOutBtn) {
-                authenticatedSignOutBtn.addEventListener('click', () => this.handleSignOut());
+                this.updateUserProfile(account);
             }
             if (viewExamplesBtn) {
                 viewExamplesBtn.innerHTML = '<i class="fas fa-play"></i> View Examples';
@@ -361,7 +349,6 @@ class PaceApp {
             // User is not authenticated - show landing UI
             if (signInBtn) signInBtn.classList.remove('pace-hidden');
             if (userProfile) userProfile.classList.add('pace-hidden');
-            if (authenticatedHeader) authenticatedHeader.classList.add('pace-hidden');
             if (viewExamplesBtn) {
                 if (this.auth) {
                     viewExamplesBtn.innerHTML = '<i class="fas fa-sign-in-alt"></i> Sign In to View';
@@ -377,13 +364,33 @@ class PaceApp {
     }
 
     /**
+     * Simulate authenticated state for demo mode
+     */
+    simulateAuthenticatedState() {
+        const mockAccount = {
+            name: 'Demo User',
+            email: 'demo@paceappliedsolutions.com',
+            username: 'demo@paceappliedsolutions.com'
+        };
+        
+        // Update UI to show authenticated state
+        const signInBtn = document.getElementById('signInBtn');
+        const userProfile = document.getElementById('userProfile');
+        
+        if (signInBtn) signInBtn.classList.add('pace-hidden');
+        if (userProfile) {
+            userProfile.classList.remove('pace-hidden');
+            this.updateUserProfile(mockAccount);
+        }
+    }
+
+    /**
      * Update user profile display
      */
-    updateUserProfile(account, profileType = 'userProfile') {
-        const prefix = profileType === 'authenticatedUserProfile' ? 'authenticated' : '';
-        const userName = document.getElementById(`${prefix}UserName`);
-        const userEmail = document.getElementById(`${prefix}UserEmail`);
-        const userAvatar = document.getElementById(`${prefix}UserAvatar`);
+    updateUserProfile(account) {
+        const userName = document.getElementById('userName');
+        const userEmail = document.getElementById('userEmail');
+        const userAvatar = document.getElementById('userAvatar');
         
         const name = account.name || account.username || 'User';
         const email = account.email || account.username || '';
@@ -420,7 +427,23 @@ class PaceApp {
         if (landingSection) landingSection.classList.remove('pace-hidden');
         if (examplesSection) examplesSection.classList.add('pace-hidden');
         
+        // Reset header to unauthenticated state for demo mode
+        if (!this.isAuthenticated) {
+            this.resetToUnauthenticatedState();
+        }
+        
         this.scrollToTop();
+    }
+
+    /**
+     * Reset header to unauthenticated state
+     */
+    resetToUnauthenticatedState() {
+        const signInBtn = document.getElementById('signInBtn');
+        const userProfile = document.getElementById('userProfile');
+        
+        if (signInBtn) signInBtn.classList.remove('pace-hidden');
+        if (userProfile) userProfile.classList.add('pace-hidden');
     }
 
     /**

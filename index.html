@@ -72,22 +72,29 @@
     </script>
 </head>
 <body class="pace-base">
-    <!-- Authenticated Header (Hidden by default, shown when signed in) -->
-    <header id="authenticatedHeader" class="pace-app-header pace-hidden">
+    <!-- Unified Header (Always visible) -->
+    <header id="unifiedHeader" class="pace-app-header">
         <div class="pace-container">
             <div class="pace-app-header-content">
                 <div class="pace-app-header-left">
                     <img src="./assets/logo/Pace-logo-orange.png" alt="Pace Applied Solutions" class="pace-app-header-logo">
-                    <h1 class="pace-app-header-title">Style Guide & Components</h1>
+                    <h1 class="pace-app-header-title">Public Assets & Style Guide</h1>
                 </div>
                 <div class="pace-app-header-right">
-                    <div id="authenticatedUserProfile" class="pace-user-profile">
-                        <img id="authenticatedUserAvatar" class="pace-user-avatar" src="" alt="User Avatar">
+                    <!-- Sign In Button (visible when not authenticated) -->
+                    <button id="signInBtn" class="pace-button pace-button-primary">
+                        <i class="fas fa-sign-in-alt"></i>
+                        Sign In to Access Examples
+                    </button>
+                    
+                    <!-- User Profile (visible when authenticated) -->
+                    <div id="userProfile" class="pace-user-profile pace-hidden">
+                        <img id="userAvatar" class="pace-user-avatar" src="" alt="User Avatar">
                         <div class="pace-user-info">
-                            <p class="pace-user-name" id="authenticatedUserName"></p>
-                            <p class="pace-user-email" id="authenticatedUserEmail"></p>
+                            <p class="pace-user-name" id="userName"></p>
+                            <p class="pace-user-email" id="userEmail"></p>
                         </div>
-                        <button id="authenticatedSignOutBtn" class="pace-button pace-button-secondary pace-button-small">
+                        <button id="signOutBtn" class="pace-button pace-button-secondary pace-button-small">
                             <i class="fas fa-sign-out-alt"></i>
                             Sign Out
                         </button>
@@ -106,27 +113,6 @@
             <p class="pace-text-large pace-index-subtitle">
                 Official brand assets, design system, and implementation resources for Pace Applied Solutions projects.
             </p>
-            
-            <!-- Authentication Control -->
-            <div class="pace-auth-section">                
-                <div id="auth-controls">
-                    <button id="signInBtn" class="pace-button pace-button-primary">
-                        <i class="fas fa-sign-in-alt"></i>
-                        Sign In to Access Examples
-                    </button>
-                    <div id="userProfile" class="pace-user-profile pace-hidden">
-                        <img id="userAvatar" class="pace-user-avatar" src="" alt="User Avatar">
-                        <div class="pace-user-info">
-                            <p class="pace-user-name" id="userName"></p>
-                            <p class="pace-user-email" id="userEmail"></p>
-                        </div>
-                        <button id="signOutBtn" class="pace-button pace-button-secondary">
-                            <i class="fas fa-sign-out-alt"></i>
-                            Sign Out
-                        </button>
-                    </div>
-                </div>
-            </div>
         </header>
 
         <!-- Quick Links -->
