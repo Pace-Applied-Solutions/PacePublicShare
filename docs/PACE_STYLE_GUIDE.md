@@ -10,15 +10,16 @@ Complete Design System Documentation
 1. [Introduction](#introduction)
 2. [Brand Assets](#brand-assets)
 3. [Color System](#color-system)
-4. [Typography](#typography)
-5. [Component Library](#component-library)
-6. [Layout System](#layout-system)
-7. [Authentication Components](#authentication-components)
-8. [Responsive Design](#responsive-design)
-9. [Implementation Guidelines](#implementation-guidelines)
-10. [Code Examples](#code-examples)
-11. [Accessibility Standards](#accessibility-standards)
-12. [Development Resources](#development-resources)
+4. [Dark Mode System](#dark-mode-system)
+5. [Typography](#typography)
+6. [Component Library](#component-library)
+7. [Layout System](#layout-system)
+8. [Authentication Components](#authentication-components)
+9. [Responsive Design](#responsive-design)
+10. [Implementation Guidelines](#implementation-guidelines)
+11. [Code Examples](#code-examples)
+12. [Accessibility Standards](#accessibility-standards)
+13. [Development Resources](#development-resources)
 
 ---
 
@@ -33,9 +34,10 @@ This comprehensive style guide establishes visual and functional standards for a
 - **Modern & Clean**: Contemporary design with subtle animations and micro-interactions
 - **Responsive**: Mobile-first approach with progressive enhancement
 - **Performance-Focused**: Optimized for fast loading and smooth interactions
+- **Theme-Aware**: Built-in dark/light mode support with system preference detection
 
 ### Implementation Framework
-The style guide is implemented as a modular CSS framework with the `pace-` namespace prefix, allowing easy integration into existing projects without conflicts.
+The style guide is implemented as a modular CSS framework with the `pace-` namespace prefix, allowing easy integration into existing projects without conflicts. The framework includes a comprehensive theme system supporting both light and dark modes.
 
 ---
 
@@ -147,6 +149,161 @@ The color system is built using CSS custom properties for maintainability and th
 - **System Integration**: Microsoft 365 authentication, external links
 - **Information**: Help text, tooltips, informational messages
 - **Navigation**: Breadcrumbs, pagination, tabs
+
+---
+
+## Dark Mode System
+
+### Overview
+The Pace Style Guide includes a comprehensive dark mode system that automatically adapts to user preferences while maintaining brand consistency and accessibility standards.
+
+### Implementation Architecture
+
+#### Theme Detection
+The system supports three theme modes:
+- **Light**: Explicitly selected light theme
+- **Dark**: Explicitly selected dark theme  
+- **Auto**: Follows system preference (`prefers-color-scheme`)
+
+#### CSS Implementation
+```css
+/* Light theme (default) */
+:root {
+  --pace-background-color: #f9f9f9;
+  --pace-card-background: #fff;
+  --pace-text-color: #333;
+  --pace-text-light: #666;
+  --pace-border-color: #e5e5e5;
+  --pace-shadow-color: rgba(0,0,0,0.08);
+}
+
+/* Dark theme overrides */
+[data-theme="dark"] {
+  --pace-background-color: #111827;
+  --pace-card-background: #1F2937;
+  --pace-text-color: #F9FAFB;
+  --pace-text-light: #D1D5DB;
+  --pace-border-color: #374151;
+  --pace-shadow-color: rgba(0,0,0,0.3);
+}
+
+/* System preference detection */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    /* Apply dark theme variables */
+  }
+}
+```
+
+#### Brand Color Preservation
+The primary brand color (`--pace-primary-color: #EB9110`) remains consistent across both themes to maintain brand identity and recognition.
+
+### JavaScript Theme Management
+
+#### Theme Manager API
+```javascript
+// Access the theme manager
+const themeManager = window.paceApp.themeManager;
+
+// Set theme explicitly
+themeManager.setTheme('dark');   // Force dark mode
+themeManager.setTheme('light');  // Force light mode
+themeManager.setTheme('auto');   // Follow system preference
+
+// Get current theme information
+const themeInfo = themeManager.getThemeInfo();
+console.log(themeInfo.current);   // User's preference ('light', 'dark', 'auto')
+console.log(themeInfo.effective); // Actually applied theme ('light', 'dark')
+console.log(themeInfo.system);    // System preference ('light', 'dark')
+```
+
+#### Persistence
+User theme preferences are automatically saved to `localStorage` and restored on page load.
+
+### Theme Toggle Component
+
+#### HTML Structure
+```html
+<div class="pace-theme-toggle">
+  <label class="pace-theme-toggle-label" for="themeToggle">Theme</label>
+  <button 
+    id="themeToggle" 
+    class="pace-theme-toggle-switch" 
+    type="button"
+    aria-label="Toggle dark mode"
+    title="Toggle between light and dark theme"
+  >
+    <span class="pace-theme-toggle-handle">
+      <i class="pace-theme-toggle-icon fas fa-sun"></i>
+    </span>
+  </button>
+</div>
+```
+
+#### Visual States
+- **Light Mode**: Sun icon, toggle positioned left
+- **Dark Mode**: Moon icon, toggle positioned right
+- **Smooth Transitions**: CSS transitions for all state changes
+
+### Accessibility Features
+
+#### WCAG 2.1 AA Compliance
+- **Contrast Ratios**: All text maintains minimum 4.5:1 contrast ratio
+- **Focus Management**: Proper focus indicators in both themes
+- **Screen Reader Support**: Theme changes are announced to assistive technologies
+- **Keyboard Navigation**: Full keyboard support for theme toggle
+
+#### Color Considerations
+```css
+/* Dark theme specific accessibility improvements */
+[data-theme="dark"] .pace-button:focus {
+  box-shadow: 0 0 0 2px var(--pace-card-background), 0 0 0 4px var(--pace-primary-color);
+}
+
+[data-theme="dark"] .pace-input:focus {
+  border-color: var(--pace-primary-color);
+  box-shadow: 0 0 0 2px var(--pace-primary-color);
+}
+```
+
+### Responsive Behavior
+
+#### Mobile Optimization
+- Theme toggle label hidden on mobile devices
+- Touch-friendly button sizing
+- Consistent behavior across all screen sizes
+
+#### Media Query Support
+```css
+@media (max-width: 768px) {
+  .pace-theme-toggle {
+    margin-left: 0;
+    margin-top: var(--pace-spacing-sm);
+  }
+  
+  .pace-theme-toggle-label {
+    display: none;
+  }
+}
+```
+
+### Testing and Validation
+
+#### System Preference Testing
+1. Change OS theme preference
+2. Verify automatic theme switching (when set to 'auto')
+3. Confirm user preference overrides system preference
+
+#### Persistence Testing
+1. Toggle theme manually
+2. Refresh page
+3. Verify theme preference is restored
+
+#### Accessibility Testing
+1. Test with screen readers
+2. Verify keyboard navigation
+3. Check color contrast ratios
+4. Validate focus management
 
 ---
 
@@ -503,6 +660,53 @@ font-family: 'Aptos', 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', s
 <script src="./scripts/auth.js"></script>
 ```
 
+#### Dark Mode Integration
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- Pace Style Guide CSS -->
+  <link rel="stylesheet" href="pace-style-guide.css">
+  
+  <!-- FontAwesome for Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Pace Scripts for Theme Management -->
+  <script src="./scripts/app.js"></script>
+</head>
+<body class="pace-base">
+  <header class="pace-page-header">
+    <div class="pace-container">
+      <h1 class="pace-page-title">Your Application</h1>
+      
+      <!-- Theme Toggle -->
+      <div class="pace-theme-toggle">
+        <label class="pace-theme-toggle-label" for="themeToggle">Theme</label>
+        <button 
+          id="themeToggle" 
+          class="pace-theme-toggle-switch" 
+          type="button"
+          aria-label="Toggle dark mode"
+          title="Toggle between light and dark theme"
+        >
+          <span class="pace-theme-toggle-handle">
+            <i class="pace-theme-toggle-icon fas fa-sun"></i>
+          </span>
+        </button>
+      </div>
+    </div>
+  </header>
+  
+  <div class="pace-container">
+    <!-- Your theme-aware content here -->
+  </div>
+</body>
+</html>
+```
+
 ### JavaScript Usage
 ```javascript
 // Initialize authentication
@@ -518,6 +722,33 @@ document.addEventListener('DOMContentLoaded', async function() {
   document.getElementById('signInBtn').addEventListener('click', async () => {
     await auth.signIn();
   });
+});
+```
+
+### Theme Management
+```javascript
+// Access theme manager after app initialization
+const themeManager = window.paceApp.themeManager;
+
+// Set theme programmatically
+themeManager.setTheme('dark');   // Force dark mode
+themeManager.setTheme('light');  // Force light mode
+themeManager.setTheme('auto');   // Follow system preference
+
+// Get current theme information
+const themeInfo = themeManager.getThemeInfo();
+console.log('Current theme:', themeInfo.current);   // User's preference
+console.log('Effective theme:', themeInfo.effective); // Actually applied theme
+console.log('System preference:', themeInfo.system);  // OS preference
+
+// Listen for theme changes
+document.addEventListener('DOMContentLoaded', () => {
+  const themeToggle = document.getElementById('themeToggle');
+  if (themeToggle) {
+    themeToggle.addEventListener('click', () => {
+      console.log('Theme toggled:', themeManager.getThemeInfo().effective);
+    });
+  }
 });
 ```
 

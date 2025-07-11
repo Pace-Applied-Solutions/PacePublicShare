@@ -11,6 +11,7 @@
    CSS Custom Properties (CSS Variables)
    ================================================ */
 :root {
+    /* Light Theme Colors (Default) */
     --pace-primary-color: #EB9110;
     --pace-primary-dark: #d48209;
     --pace-secondary-color: #505050;
@@ -53,6 +54,42 @@
 }
 
 /* ================================================
+   Dark Theme Colors
+   ================================================ */
+[data-theme="dark"] {
+    /* Dark Theme Color Overrides */
+    --pace-primary-color: #EB9110;        /* Keep primary orange for brand consistency */
+    --pace-primary-dark: #d48209;         /* Keep primary dark for brand consistency */
+    --pace-secondary-color: #9CA3AF;      /* Lighter secondary for dark theme */
+    --pace-accent-color: #60A5FA;         /* Lighter blue for better contrast */
+    --pace-background-color: #111827;     /* Dark background */
+    --pace-card-background: #1F2937;      /* Dark card background */
+    --pace-text-color: #F9FAFB;           /* Light text */
+    --pace-text-light: #D1D5DB;           /* Light secondary text */
+    --pace-border-color: #374151;         /* Dark border */
+    --pace-shadow-color: rgba(0,0,0,0.3); /* Darker shadow for depth */
+}
+
+/* ================================================
+   System Preference Detection
+   ================================================ */
+@media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+        /* Only apply dark theme if user hasn't explicitly selected light */
+        --pace-primary-color: #EB9110;
+        --pace-primary-dark: #d48209;
+        --pace-secondary-color: #9CA3AF;
+        --pace-accent-color: #60A5FA;
+        --pace-background-color: #111827;
+        --pace-card-background: #1F2937;
+        --pace-text-color: #F9FAFB;
+        --pace-text-light: #D1D5DB;
+        --pace-border-color: #374151;
+        --pace-shadow-color: rgba(0,0,0,0.3);
+    }
+}
+
+/* ================================================
    Base Styles
    ================================================ */
 .pace-base {
@@ -61,6 +98,8 @@
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    background-color: var(--pace-background-color);
+    transition: background-color var(--pace-transition), color var(--pace-transition);
 }
 
 .pace-container {
@@ -1368,4 +1407,134 @@
     font-weight: 600;
     padding: 0 var(--pace-spacing-sm);
     color: var(--pace-text-color);
+}
+
+/* ================================================
+   Theme Toggle Component
+   ================================================ */
+.pace-theme-toggle {
+    display: flex;
+    align-items: center;
+    gap: var(--pace-spacing-sm);
+    margin-left: var(--pace-spacing-md);
+}
+
+.pace-theme-toggle-label {
+    font-size: var(--pace-font-size-sm);
+    color: var(--pace-text-light);
+    margin: 0;
+}
+
+.pace-theme-toggle-switch {
+    position: relative;
+    width: 48px;
+    height: 24px;
+    background: var(--pace-border-color);
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background-color var(--pace-transition);
+    border: none;
+    outline: none;
+}
+
+.pace-theme-toggle-switch:focus {
+    box-shadow: 0 0 0 2px var(--pace-primary-color);
+}
+
+.pace-theme-toggle-switch:hover {
+    background: var(--pace-secondary-color);
+}
+
+.pace-theme-toggle-switch[data-theme="dark"] {
+    background: var(--pace-primary-color);
+}
+
+.pace-theme-toggle-switch[data-theme="dark"]:hover {
+    background: var(--pace-primary-dark);
+}
+
+.pace-theme-toggle-handle {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 20px;
+    height: 20px;
+    background: var(--pace-card-background);
+    border-radius: 50%;
+    transition: transform var(--pace-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    box-shadow: 0 2px 4px var(--pace-shadow-color);
+}
+
+.pace-theme-toggle-switch[data-theme="dark"] .pace-theme-toggle-handle {
+    transform: translateX(24px);
+}
+
+.pace-theme-toggle-icon {
+    color: var(--pace-text-light);
+    font-size: 10px;
+}
+
+.pace-theme-toggle-switch[data-theme="dark"] .pace-theme-toggle-icon {
+    color: var(--pace-primary-color);
+}
+
+/* ================================================
+   Dark Theme Specific Adjustments
+   ================================================ */
+[data-theme="dark"] .pace-logo-example.pace-light {
+    background-color: var(--pace-card-background);
+    border: 1px solid var(--pace-border-color);
+    padding: var(--pace-spacing-md);
+    border-radius: var(--pace-border-radius);
+}
+
+[data-theme="dark"] .pace-logo-example.pace-dark {
+    background-color: var(--pace-secondary-color);
+    border: 1px solid var(--pace-border-color);
+    padding: var(--pace-spacing-md);
+    border-radius: var(--pace-border-radius);
+}
+
+[data-theme="dark"] .pace-pre {
+    background-color: var(--pace-background-color);
+    border: 1px solid var(--pace-border-color);
+}
+
+[data-theme="dark"] .pace-code {
+    background-color: transparent;
+    color: var(--pace-text-color);
+}
+
+/* ================================================
+   Accessibility Improvements for Dark Theme
+   ================================================ */
+[data-theme="dark"] .pace-button:focus {
+    box-shadow: 0 0 0 2px var(--pace-card-background), 0 0 0 4px var(--pace-primary-color);
+}
+
+[data-theme="dark"] .pace-input:focus {
+    border-color: var(--pace-primary-color);
+    box-shadow: 0 0 0 2px var(--pace-primary-color);
+}
+
+[data-theme="dark"] .pace-notification {
+    border-left: 4px solid var(--pace-primary-color);
+}
+
+/* ================================================
+   Responsive Theme Toggle
+   ================================================ */
+@media (max-width: 768px) {
+    .pace-theme-toggle {
+        margin-left: 0;
+        margin-top: var(--pace-spacing-sm);
+    }
+    
+    .pace-theme-toggle-label {
+        display: none;
+    }
 }

@@ -16,6 +16,7 @@ class PaceApp {
         this.domReady = false;
         this.scriptsReady = false;
         this.config = null;
+        this.themeManager = null;
     }
 
     /**
@@ -130,6 +131,10 @@ class PaceApp {
      */
     initializeApplication() {
         try {
+            // Initialize theme manager first
+            this.themeManager = new ThemeManager();
+            this.themeManager.initialize();
+            
             // Validate configuration
             if (typeof CONFIG !== 'undefined') {
                 this.config = CONFIG;
@@ -587,6 +592,241 @@ window.demoNotification = function(type) {
         window.paceApp.showNotification(messages[type] || messages.info, type);
     }
 };
+
+/**
+ * Theme Management Class
+ * Handles dark/light theme switching, persistence, and system preference detection
+ */
+class ThemeManager {
+    constructor() {
+        this.currentTheme = 'auto';
+        this.systemPreference = 'light';
+        this.toggleButton = null;
+        this.storageKey = 'pace-theme-preference';
+    }
+
+    /**
+     * Initialize theme management
+     */
+    initialize() {
+        console.log('🎨 Initializing theme management...');
+        
+        // Detect system preference
+        this.detectSystemPreference();
+        
+        // Load saved preference
+        this.loadSavedPreference();
+        
+        // Set up DOM elements
+        this.setupDOMElements();
+        
+        // Apply initial theme
+        this.applyTheme();
+        
+        // Listen for system preference changes
+        this.setupSystemPreferenceListener();
+        
+        console.log('✅ Theme management initialized');
+    }
+
+    /**
+     * Detect system color scheme preference
+     */
+    detectSystemPreference() {
+        if (window.matchMedia) {
+            const darkModeQuery = window.matchMedia('(prefers-color-scheme: dark)');
+            this.systemPreference = darkModeQuery.matches ? 'dark' : 'light';
+            console.log('🎯 System preference detected:', this.systemPreference);
+        }
+    }
+
+    /**
+     * Load saved theme preference from localStorage
+     */
+    loadSavedPreference() {
+        try {
+            const saved = localStorage.getItem(this.storageKey);
+            if (saved && ['light', 'dark', 'auto'].includes(saved)) {
+                this.currentTheme = saved;
+                console.log('💾 Loaded saved theme preference:', saved);
+            }
+        } catch (error) {
+            console.warn('⚠️ Failed to load theme preference:', error);
+        }
+    }
+
+    /**
+     * Save theme preference to localStorage
+     */
+    savePreference(theme) {
+        try {
+            localStorage.setItem(this.storageKey, theme);
+            console.log('💾 Theme preference saved:', theme);
+        } catch (error) {
+            console.warn('⚠️ Failed to save theme preference:', error);
+        }
+    }
+
+    /**
+     * Set up DOM elements for theme toggle
+     */
+    setupDOMElements() {
+        this.toggleButton = document.getElementById('themeToggle');
+        
+        if (this.toggleButton) {
+            this.toggleButton.addEventListener('click', () => {
+                this.toggleTheme();
+            });
+            
+            // Add keyboard support
+            this.toggleButton.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    this.toggleTheme();
+                }
+            });
+        }
+    }
+
+    /**
+     * Toggle between light and dark themes
+     */
+    toggleTheme() {
+        let newTheme;
+        
+        if (this.currentTheme === 'auto') {
+            // If on auto, switch to opposite of system preference
+            newTheme = this.systemPreference === 'dark' ? 'light' : 'dark';
+        } else if (this.currentTheme === 'light') {
+            newTheme = 'dark';
+        } else {
+            newTheme = 'light';
+        }
+        
+        this.setTheme(newTheme);
+        
+        // Announce theme change for screen readers
+        this.announceThemeChange(newTheme);
+    }
+
+    /**
+     * Set specific theme
+     */
+    setTheme(theme) {
+        this.currentTheme = theme;
+        this.applyTheme();
+        this.savePreference(theme);
+        this.updateToggleButton();
+    }
+
+    /**
+     * Apply the current theme to the document
+     */
+    applyTheme() {
+        const body = document.body;
+        const effectiveTheme = this.getEffectiveTheme();
+        
+        // Remove existing theme attributes
+        body.removeAttribute('data-theme');
+        
+        // Apply new theme
+        if (effectiveTheme === 'dark') {
+            body.setAttribute('data-theme', 'dark');
+        } else {
+            body.setAttribute('data-theme', 'light');
+        }
+        
+        console.log('🎨 Applied theme:', effectiveTheme);
+    }
+
+    /**
+     * Get the effective theme (resolving 'auto' to actual theme)
+     */
+    getEffectiveTheme() {
+        if (this.currentTheme === 'auto') {
+            return this.systemPreference;
+        }
+        return this.currentTheme;
+    }
+
+    /**
+     * Update the toggle button appearance
+     */
+    updateToggleButton() {
+        if (!this.toggleButton) return;
+        
+        const effectiveTheme = this.getEffectiveTheme();
+        const icon = this.toggleButton.querySelector('.pace-theme-toggle-icon');
+        
+        // Update button data attribute
+        this.toggleButton.setAttribute('data-theme', effectiveTheme);
+        
+        // Update icon
+        if (icon) {
+            icon.className = effectiveTheme === 'dark' 
+                ? 'pace-theme-toggle-icon fas fa-moon'
+                : 'pace-theme-toggle-icon fas fa-sun';
+        }
+        
+        // Update aria-label
+        const label = effectiveTheme === 'dark' 
+            ? 'Switch to light mode'
+            : 'Switch to dark mode';
+        this.toggleButton.setAttribute('aria-label', label);
+        this.toggleButton.setAttribute('title', label);
+    }
+
+    /**
+     * Set up listener for system preference changes
+     */
+    setupSystemPreferenceListener() {
+        if (window.matchMedia) {
+            const darkModeQuery = window.matchMedia('(prefers-color-scheme: dark)');
+            darkModeQuery.addEventListener('change', (e) => {
+                this.systemPreference = e.matches ? 'dark' : 'light';
+                console.log('🎯 System preference changed to:', this.systemPreference);
+                
+                // Re-apply theme if currently on auto
+                if (this.currentTheme === 'auto') {
+                    this.applyTheme();
+                    this.updateToggleButton();
+                }
+            });
+        }
+    }
+
+    /**
+     * Announce theme change for accessibility
+     */
+    announceThemeChange(theme) {
+        const announcement = `Theme changed to ${theme} mode`;
+        
+        // Create temporary announcement element
+        const announcer = document.createElement('div');
+        announcer.setAttribute('aria-live', 'polite');
+        announcer.setAttribute('aria-atomic', 'true');
+        announcer.className = 'pace-sr-only';
+        announcer.textContent = announcement;
+        
+        document.body.appendChild(announcer);
+        
+        // Remove after announcement
+        setTimeout(() => {
+            document.body.removeChild(announcer);
+        }, 1000);
+    }
+
+    /**
+     * Get current theme information
+     */
+    getThemeInfo() {
+        return {
+            current: this.currentTheme,
+            effective: this.getEffectiveTheme(),
+            system: this.systemPreference
+        };
+    }
+}
 
 // Initialize application when this script loads
 window.paceApp = new PaceApp();

@@ -123,6 +123,7 @@ PacePublicShare/
 - **Responsive Preview**: See how components adapt to different screen sizes
 - **Authentication Flow**: Complete Microsoft 365 sign-in/sign-out workflow
 - **Keyboard Shortcuts**: Enhanced accessibility and power user features
+- **Dark Mode Support**: Toggle between light and dark themes with system preference detection
 
 ### Development Features
 - **Modular Architecture**: Clean separation of concerns
@@ -130,6 +131,7 @@ PacePublicShare/
 - **Error Handling**: Graceful degradation and user feedback
 - **Performance Optimized**: Minimal dependencies and efficient loading
 - **Cross-Browser Support**: Tested across modern browsers
+- **Theme System**: Built-in dark/light mode with CSS custom properties
 
 ## 🛠️ Development
 
@@ -169,6 +171,32 @@ The application is ready for production deployment as static files:
     --pace-secondary-color: #your-secondary-color;
     --pace-font-family: 'Your Font', sans-serif;
 }
+
+/* Dark theme customization */
+[data-theme="dark"] {
+    --pace-primary-color: #your-dark-brand-color;
+    --pace-background-color: #your-dark-background;
+    --pace-text-color: #your-dark-text;
+}
+```
+
+#### Theme System
+The style guide includes a comprehensive dark/light theme system:
+
+```javascript
+// Access theme manager
+const themeManager = window.paceApp.themeManager;
+
+// Set specific theme
+themeManager.setTheme('dark');   // Force dark mode
+themeManager.setTheme('light');  // Force light mode
+themeManager.setTheme('auto');   // Follow system preference
+
+// Get current theme info
+const themeInfo = themeManager.getThemeInfo();
+console.log(themeInfo.current);   // User's preference
+console.log(themeInfo.effective); // Actually applied theme
+console.log(themeInfo.system);    // System preference
 ```
 
 #### JavaScript Extension
