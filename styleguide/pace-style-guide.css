@@ -87,6 +87,12 @@
         --pace-border-color: #374151;
         --pace-shadow-color: rgba(0,0,0,0.3);
     }
+    
+    /* Ensure logo examples maintain appropriate visibility in system dark mode */
+    .pace-logo-example.pace-light {
+        background-color: #f8f9fa !important; /* Force light background for logo visibility */
+        color: #333 !important; /* Ensure text remains readable on light background */
+    }
 }
 
 /* ================================================
@@ -1483,10 +1489,11 @@
    Dark Theme Specific Adjustments
    ================================================ */
 [data-theme="dark"] .pace-logo-example.pace-light {
-    background-color: var(--pace-card-background);
+    background-color: #f8f9fa; /* Force light background for logo visibility */
     border: 1px solid var(--pace-border-color);
     padding: var(--pace-spacing-md);
     border-radius: var(--pace-border-radius);
+    color: #333; /* Ensure text remains readable on light background */
 }
 
 [data-theme="dark"] .pace-logo-example.pace-dark {
