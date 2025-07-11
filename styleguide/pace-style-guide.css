@@ -1314,10 +1314,7 @@
 
 #landingSection.pace-hidden,
 #examplesSection.pace-hidden {
-    opacity: 0;
-    visibility: hidden;
-    position: absolute;
-    left: -9999px;
+    display: none;
 }
 
 /* Enhanced button styling for interactive examples */
