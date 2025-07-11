@@ -149,7 +149,7 @@
                         <i class="fas fa-book pace-index-icon"></i>
                         <h3 class="pace-heading-3">Style Guide</h3>
                         <p class="pace-text-body">Complete design system documentation with implementation guidelines.</p>
-                        <a href="./PACE_STYLE_GUIDE.md" class="pace-button pace-button-primary" target="_blank">
+                        <a href="./docs/PACE_STYLE_GUIDE.md" class="pace-button pace-button-primary" target="_blank">
                             <i class="fas fa-file-alt"></i>
                             Read Documentation
                         </a>
@@ -265,31 +265,32 @@
                 <div class="pace-auth-brand-section">
                     <div class="pace-brand-content">
                         <img src="./assets/logo/Pace-logo-white.png" alt="Pace Applied Solutions" class="pace-brand-logo">
-                        <h1 class="pace-brand-tagline">Secure Document Management</h1>
+                        <h1 class="pace-brand-tagline">Pace Style Guide & Components</h1>
                         <p class="pace-brand-description">
-                            Enterprise-grade documentation platform with advanced security features,
-                            version control, and collaborative tools designed for modern businesses.
+                            Comprehensive design system and interactive component library with 150+ 
+                            examples, live code previews, and Microsoft 365 authentication integration 
+                            for modern enterprise applications.
                         </p>
                         <div class="pace-brand-features">
                             <div class="pace-feature-item">
-                                <i class="fas fa-shield-alt"></i>
-                                <span>Enterprise Security</span>
+                                <i class="fas fa-palette"></i>
+                                <span>Design System</span>
                             </div>
                             <div class="pace-feature-item">
-                                <i class="fas fa-code-branch"></i>
-                                <span>Version Control</span>
+                                <i class="fas fa-code"></i>
+                                <span>Live Examples</span>
                             </div>
                             <div class="pace-feature-item">
-                                <i class="fas fa-users"></i>
-                                <span>Team Collaboration</span>
+                                <i class="fas fa-copy"></i>
+                                <span>Copy-to-Clipboard</span>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="pace-auth-login-section">
                     <div class="pace-login-form">
-                        <h2 class="pace-login-title">Welcome Back</h2>
-                        <p class="pace-login-subtitle">Sign in to access your documents</p>
+                        <h2 class="pace-login-title">Welcome to Style Guide</h2>
+                        <p class="pace-login-subtitle">Sign in to access interactive examples</p>
                         
                         <button class="pace-button pace-button-microsoft pace-button-full">
                             <i class="fab fa-microsoft"></i>
@@ -302,7 +303,7 @@
                         
                         <form class="pace-login-form-demo">
                             <div class="pace-input-group">
-                                <input type="email" class="pace-input" placeholder="Email address" value="demo@paceappliedsolutions.com" readonly>
+                                <input type="email" class="pace-input" placeholder="Email address" value="developer@paceappliedsolutions.com" readonly>
                             </div>
                             <div class="pace-input-group">
                                 <input type="password" class="pace-input" placeholder="Password" value="••••••••••" readonly>
@@ -322,8 +323,14 @@
   &lt;div class="pace-auth-brand-section"&gt;
     &lt;div class="pace-brand-content"&gt;
       &lt;img src="./assets/logo/Pace-logo-white.png" class="pace-brand-logo"&gt;
-      &lt;h1 class="pace-brand-tagline"&gt;Your App Title&lt;/h1&gt;
-      &lt;p class="pace-brand-description"&gt;Your app description...&lt;/p&gt;
+      &lt;h1 class="pace-brand-tagline"&gt;Pace Style Guide &amp; Components&lt;/h1&gt;
+      &lt;p class="pace-brand-description"&gt;Your application description...&lt;/p&gt;
+      &lt;div class="pace-brand-features"&gt;
+        &lt;div class="pace-feature-item"&gt;
+          &lt;i class="fas fa-palette"&gt;&lt;/i&gt;
+          &lt;span&gt;Design System&lt;/span&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
     &lt;/div&gt;
   &lt;/div&gt;
   &lt;div class="pace-auth-login-section"&gt;
@@ -754,6 +761,17 @@ document.addEventListener('DOMContentLoaded', async function() {
         </div>
     </div>
 
+    <!-- Configuration Notice -->
+    <div id="configNotice" class="pace-section">
+        <div class="pace-notification pace-notification-info">
+            <i class="fas fa-info-circle"></i>
+            <div>
+                <strong>Demo Mode Active</strong>
+                <p>Authentication is running in demo mode. <a href="./docs/AUTHENTICATION_SETUP.md" target="_blank" rel="noopener">Configure authentication</a> for production use.</p>
+            </div>
+        </div>
+    </div>
+
     <!-- Footer -->
     <footer class="pace-index-footer">
         <div class="pace-container">
@@ -765,7 +783,7 @@ document.addEventListener('DOMContentLoaded', async function() {
                     <i class="fab fa-github"></i>
                     View on GitHub
                 </a>
-                <a href="./AUTHENTICATION_SETUP.md" class="pace-button pace-button-outline" target="_blank" rel="noopener">
+                <a href="./docs/AUTHENTICATION_SETUP.md" class="pace-button pace-button-outline" target="_blank" rel="noopener">
                     <i class="fas fa-book"></i>
                     Setup Guide
                 </a>
