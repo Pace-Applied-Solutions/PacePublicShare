@@ -40,6 +40,7 @@ const CONFIG = {
             'openid',
             'profile',
             'User.Read',
+            'User.ReadBasic.All',
             'email'
         ]
     },

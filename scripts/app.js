@@ -398,9 +398,24 @@ class PaceApp {
         if (userName) userName.textContent = name;
         if (userEmail) userEmail.textContent = email;
         if (userAvatar) {
-            const initials = name.charAt(0);
-            userAvatar.src = account.photo || `https://via.placeholder.com/40x40/EB9110/FFFFFF?text=${initials}`;
-            userAvatar.alt = `${name} Avatar`;
+            // Use the fetched photo if available, otherwise use default avatar
+            if (account.photo) {
+                userAvatar.src = account.photo;
+                userAvatar.alt = `${name} Profile Photo`;
+                console.log('✅ Displaying user profile photo');
+            } else {
+                // Fallback to initial-based avatar
+                const initials = name.charAt(0).toUpperCase();
+                userAvatar.src = `data:image/svg+xml;base64,${btoa(`
+                    <svg width="40" height="40" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="20" cy="20" r="20" fill="#EB9110"/>
+                        <text x="20" y="26" font-family="Arial, sans-serif" font-size="14" 
+                              font-weight="bold" text-anchor="middle" fill="white">${initials}</text>
+                    </svg>
+                `)}`;
+                userAvatar.alt = `${name} Avatar`;
+                console.log('✅ Displaying default avatar for', name);
+            }
         }
     }
 

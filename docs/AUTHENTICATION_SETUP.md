@@ -1,6 +1,39 @@
-# Microsoft 365 Authentication Setup Guide
+# Profile Photo Configuration
 
-This guide walks you through configuring secure Microsoft 365 authentication for the Pace Applied Solutions Style Guide.
+## Microsoft 365 Integration
+
+The profile photo functionality integrates with Microsoft Graph API to fetch user profile photos. The implementation includes:
+
+### API Permissions Required
+- `User.Read` - Includes profile photo access
+- `User.ReadBasic.All` - May be required for some tenant configurations
+
+### Profile Photo Flow
+1. **Authentication** - User signs in with Microsoft 365
+2. **Photo Fetch** - System calls Microsoft Graph `/me/photo/$value` endpoint
+3. **Display** - Photo is displayed in user profile UI
+4. **Fallback** - If no photo available, generates initial-based avatar
+
+### Implementation Details
+- **Graph Endpoint**: `https://graph.microsoft.com/v1.0/me/photo/$value`
+- **Fallback Strategy**: SVG avatars with user initials
+- **Error Handling**: Graceful fallback to default avatars
+- **Performance**: Async photo loading with loading states
+
+### Demo Mode
+For testing and environments without Microsoft 365 access:
+- Automatically generates demo user with profile photo
+- Simulates realistic authentication flow
+- Provides fallback functionality for development
+
+### Troubleshooting
+- **No photo displayed**: Check `User.Read` permissions and tenant settings
+- **Default avatar shown**: Normal when users haven't set profile photos
+- **Permission errors**: Ensure proper consent and admin approval
+
+---
+
+For complete setup instructions, see [AUTHENTICATION_SETUP.md](./AUTHENTICATION_SETUP.md).
 
 ## Security Overview
 
@@ -44,8 +77,11 @@ After creating the app registration:
 5. Go to **API permissions** and ensure these permissions are granted:
    - `openid` (Sign users in)
    - `profile` (View users' basic profile)
-   - `User.Read` (Read user profile)
+   - `User.Read` (Read user profile **and profile photo**)
+   - `User.ReadBasic.All` (Read basic profile info for all users)
    - `email` (View users' email address)
+
+> **Note**: The `User.Read` permission includes access to the user's profile photo via Microsoft Graph API. The `User.ReadBasic.All` permission may be required in some tenant configurations for profile photo access.
 
 ### 3. Create Local Configuration
 
@@ -163,6 +199,17 @@ scripts/
 4. **Permissions errors**
    - Verify API permissions are granted in Azure AD
    - Check that consent has been provided for the application
+
+5. **Profile photo not loading**
+   - Ensure the `User.Read` permission is granted and consented
+   - Check that the user has a profile photo set in Microsoft 365
+   - Verify that your tenant allows profile photo access via Graph API
+   - Profile photos may take time to sync in new tenants
+
+6. **Profile photo shows default avatar**
+   - This is normal behavior when users don't have a profile photo
+   - Default avatars are generated using user initials
+   - Users can add photos through their Microsoft 365 profile
 
 ### Debug Information
 
