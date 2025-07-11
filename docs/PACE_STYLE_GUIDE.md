@@ -3,6 +3,8 @@
 **Version 1.0** | July 2025  
 Complete Design System Documentation
 
+> **📖 Note**: This documentation is also available as [interactive HTML](./style-guide.html) with enhanced navigation, table of contents, and improved accessibility features.
+
 ---
 
 ## Table of Contents

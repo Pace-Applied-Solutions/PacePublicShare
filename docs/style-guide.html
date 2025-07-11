@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pace Applied Solutions - Style Guide Documentation</title>
+    
+    <!-- Favicon and Icons -->
+    <link rel="icon" type="image/x-icon" href="../assets/logo/favicon.ico">
+    <link rel="icon" type="image/png" sizes="16x16" href="../assets/logo/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../assets/logo/favicon-32x32.png">
+    <link rel="apple-touch-icon" href="../assets/logo/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="../assets/logo/android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="../assets/logo/android-chrome-512x512.png">
+    
+    <!-- External Libraries -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Pace Style Guide CSS -->
+    <link rel="stylesheet" href="../styleguide/pace-style-guide.css">
+    
+    <!-- Documentation-specific CSS -->
+    <style>
+        /* Documentation-specific styles */
+        .pace-doc-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .pace-doc-header {
+            background: linear-gradient(135deg, var(--pace-primary-color) 0%, var(--pace-primary-dark) 100%);
+            color: white;
+            padding: 60px 0;
+            margin-bottom: 40px;
+            border-radius: 12px;
+            text-align: center;
+        }
+        
+        .pace-doc-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        
+        .pace-doc-header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-bottom: 30px;
+        }
+        
+        .pace-doc-nav {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .pace-doc-nav h3 {
+            color: var(--pace-primary-color);
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+        
+        .pace-doc-nav-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 10px;
+        }
+        
+        .pace-doc-nav-list li {
+            margin: 0;
+        }
+        
+        .pace-doc-nav-list a {
+            display: block;
+            padding: 10px 15px;
+            color: var(--pace-text-color);
+            text-decoration: none;
+            border-radius: 6px;
+            transition: all 0.2s ease;
+            border-left: 3px solid transparent;
+        }
+        
+        .pace-doc-nav-list a:hover {
+            background: var(--pace-background-color);
+            border-left-color: var(--pace-primary-color);
+            color: var(--pace-primary-color);
+        }
+        
+        .pace-doc-content {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 40px;
+            line-height: 1.6;
+        }
+        
+        .pace-doc-content h1,
+        .pace-doc-content h2,
+        .pace-doc-content h3,
+        .pace-doc-content h4,
+        .pace-doc-content h5,
+        .pace-doc-content h6 {
+            color: var(--pace-text-color);
+            margin-top: 40px;
+            margin-bottom: 16px;
+            font-weight: 600;
+        }
+        
+        .pace-doc-content h1 {
+            font-size: 2.2rem;
+            color: var(--pace-primary-color);
+            border-bottom: 3px solid var(--pace-primary-color);
+            padding-bottom: 10px;
+        }
+        
+        .pace-doc-content h2 {
+            font-size: 1.8rem;
+            color: var(--pace-primary-color);
+            border-bottom: 2px solid var(--pace-border-color);
+            padding-bottom: 8px;
+        }
+        
+        .pace-doc-content h3 {
+            font-size: 1.4rem;
+            color: var(--pace-secondary-color);
+        }
+        
+        .pace-doc-content h4 {
+            font-size: 1.2rem;
+            color: var(--pace-secondary-color);
+        }
+        
+        .pace-doc-content pre {
+            background: #f8f9fa;
+            border: 1px solid var(--pace-border-color);
+            border-radius: 6px;
+            padding: 20px;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+        
+        .pace-doc-content code {
+            background: #f8f9fa;
+            border: 1px solid var(--pace-border-color);
+            border-radius: 3px;
+            padding: 2px 6px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+        }
+        
+        .pace-doc-content pre code {
+            background: none;
+            border: none;
+            padding: 0;
+        }
+        
+        .pace-doc-content blockquote {
+            border-left: 4px solid var(--pace-primary-color);
+            background: #f8f9fa;
+            padding: 15px 20px;
+            margin: 20px 0;
+            font-style: italic;
+        }
+        
+        .pace-doc-content table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        .pace-doc-content table th,
+        .pace-doc-content table td {
+            border: 1px solid var(--pace-border-color);
+            padding: 12px;
+            text-align: left;
+        }
+        
+        .pace-doc-content table th {
+            background: var(--pace-background-color);
+            font-weight: 600;
+            color: var(--pace-text-color);
+        }
+        
+        .pace-doc-content ul,
+        .pace-doc-content ol {
+            margin: 16px 0;
+            padding-left: 30px;
+        }
+        
+        .pace-doc-content li {
+            margin: 8px 0;
+        }
+        
+        .pace-doc-loading {
+            text-align: center;
+            padding: 60px;
+            color: var(--pace-text-light);
+        }
+        
+        .pace-doc-loading i {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .pace-doc-error {
+            background: #f8d7da;
+            border: 1px solid #f5c6cb;
+            color: #721c24;
+            padding: 20px;
+            border-radius: 6px;
+            margin: 20px 0;
+        }
+        
+        .pace-doc-back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--pace-primary-color);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+            opacity: 0;
+            visibility: hidden;
+        }
+        
+        .pace-doc-back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .pace-doc-back-to-top:hover {
+            background: var(--pace-primary-dark);
+            transform: translateY(-2px);
+        }
+        
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .pace-doc-container {
+                padding: 10px;
+            }
+            
+            .pace-doc-header {
+                padding: 40px 20px;
+            }
+            
+            .pace-doc-header h1 {
+                font-size: 2rem;
+            }
+            
+            .pace-doc-nav,
+            .pace-doc-content {
+                padding: 20px;
+            }
+            
+            .pace-doc-nav-list {
+                grid-template-columns: 1fr;
+            }
+            
+            .pace-doc-back-to-top {
+                bottom: 20px;
+                right: 20px;
+            }
+        }
+    </style>
+</head>
+<body class="pace-base">
+    <div class="pace-doc-container">
+        <!-- Header -->
+        <div class="pace-doc-header">
+            <h1>
+                <i class="fas fa-book"></i>
+                Style Guide Documentation
+            </h1>
+            <p>Comprehensive design system and implementation guidelines for Pace Applied Solutions</p>
+            <a href="../index.html" class="pace-button pace-button-outline" style="color: white; border-color: white;">
+                <i class="fas fa-home"></i>
+                Back to Main Site
+            </a>
+        </div>
+        
+        <!-- Table of Contents -->
+        <div class="pace-doc-nav">
+            <h3>
+                <i class="fas fa-list"></i>
+                Table of Contents
+            </h3>
+            <ul class="pace-doc-nav-list" id="tocList">
+                <!-- Table of contents will be populated by JavaScript -->
+            </ul>
+        </div>
+        
+        <!-- Loading State -->
+        <div class="pace-doc-loading" id="loadingState">
+            <i class="fas fa-spinner"></i>
+            <h3>Loading Style Guide Documentation...</h3>
+            <p>Please wait while we render the documentation.</p>
+        </div>
+        
+        <!-- Documentation Content -->
+        <div class="pace-doc-content" id="documentationContent" style="display: none;">
+            <!-- Content will be populated by JavaScript -->
+        </div>
+        
+        <!-- Error State -->
+        <div class="pace-doc-error" id="errorState" style="display: none;">
+            <h4>
+                <i class="fas fa-exclamation-triangle"></i>
+                Error Loading Documentation
+            </h4>
+            <p>We encountered an error while loading the documentation. Please try refreshing the page.</p>
+            <button class="pace-button pace-button-primary" onclick="location.reload()">
+                <i class="fas fa-refresh"></i>
+                Refresh Page
+            </button>
+        </div>
+        
+        <!-- Back to Top Button -->
+        <button class="pace-doc-back-to-top" id="backToTopBtn" onclick="scrollToTop()">
+            <i class="fas fa-arrow-up"></i>
+        </button>
+    </div>
+    
+    <!-- Documentation JavaScript -->
+    <script>
+        /**
+         * Simple Markdown to HTML converter
+         */
+        class SimpleMarkdownParser {
+            constructor() {
+                this.headingId = 0;
+            }
+            
+            /**
+             * Convert markdown to HTML
+             */
+            parse(markdown) {
+                let html = markdown;
+                
+                // Convert headings (must be done before other processing)
+                html = this.convertHeadings(html);
+                
+                // Convert code blocks (must be done before inline code)
+                html = this.convertCodeBlocks(html);
+                
+                // Convert inline code
+                html = this.convertInlineCode(html);
+                
+                // Convert links
+                html = this.convertLinks(html);
+                
+                // Convert bold and italic
+                html = this.convertBoldItalic(html);
+                
+                // Convert lists
+                html = this.convertLists(html);
+                
+                // Convert line breaks
+                html = this.convertLineBreaks(html);
+                
+                // Convert horizontal rules
+                html = this.convertHorizontalRules(html);
+                
+                // Convert blockquotes
+                html = this.convertBlockquotes(html);
+                
+                return html;
+            }
+            
+            /**
+             * Convert headings
+             */
+            convertHeadings(text) {
+                return text.replace(/^(#{1,6})\s(.+)$/gm, (match, hashes, content) => {
+                    const level = hashes.length;
+                    const id = `heading-${++this.headingId}`;
+                    return `<h${level} id="${id}">${content.trim()}</h${level}>`;
+                });
+            }
+            
+            /**
+             * Convert code blocks
+             */
+            convertCodeBlocks(text) {
+                return text.replace(/```([^`]+)```/g, (match, code) => {
+                    return `<pre><code>${this.escapeHtml(code.trim())}</code></pre>`;
+                });
+            }
+            
+            /**
+             * Convert inline code
+             */
+            convertInlineCode(text) {
+                return text.replace(/`([^`]+)`/g, (match, code) => {
+                    return `<code>${this.escapeHtml(code)}</code>`;
+                });
+            }
+            
+            /**
+             * Convert links
+             */
+            convertLinks(text) {
+                // Standard links [text](url)
+                text = text.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>');
+                
+                // Auto-links <url>
+                text = text.replace(/<(https?:\/\/[^>]+)>/g, '<a href="$1">$1</a>');
+                
+                return text;
+            }
+            
+            /**
+             * Convert bold and italic
+             */
+            convertBoldItalic(text) {
+                // Bold **text**
+                text = text.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+                
+                // Italic *text*
+                text = text.replace(/\*([^*]+)\*/g, '<em>$1</em>');
+                
+                return text;
+            }
+            
+            /**
+             * Convert lists
+             */
+            convertLists(text) {
+                // Unordered lists
+                text = text.replace(/^(\s*-\s.+(\n\s*-\s.+)*)/gm, (match, listItems) => {
+                    const items = listItems.split('\n').map(item => {
+                        const content = item.replace(/^\s*-\s/, '').trim();
+                        return `<li>${content}</li>`;
+                    }).join('');
+                    return `<ul>${items}</ul>`;
+                });
+                
+                // Ordered lists
+                text = text.replace(/^(\s*\d+\.\s.+(\n\s*\d+\.\s.+)*)/gm, (match, listItems) => {
+                    const items = listItems.split('\n').map(item => {
+                        const content = item.replace(/^\s*\d+\.\s/, '').trim();
+                        return `<li>${content}</li>`;
+                    }).join('');
+                    return `<ol>${items}</ol>`;
+                });
+                
+                return text;
+            }
+            
+            /**
+             * Convert line breaks
+             */
+            convertLineBreaks(text) {
+                return text.replace(/\n\n/g, '</p><p>').replace(/^/, '<p>').replace(/$/, '</p>');
+            }
+            
+            /**
+             * Convert horizontal rules
+             */
+            convertHorizontalRules(text) {
+                return text.replace(/^---$/gm, '<hr>');
+            }
+            
+            /**
+             * Convert blockquotes
+             */
+            convertBlockquotes(text) {
+                return text.replace(/^>\s(.+)$/gm, '<blockquote>$1</blockquote>');
+            }
+            
+            /**
+             * Escape HTML characters
+             */
+            escapeHtml(text) {
+                const div = document.createElement('div');
+                div.textContent = text;
+                return div.innerHTML;
+            }
+        }
+        
+        /**
+         * Style Guide Documentation Renderer
+         * Loads and renders the markdown documentation as HTML
+         */
+        class StyleGuideRenderer {
+            constructor() {
+                this.markdownUrl = './PACE_STYLE_GUIDE.md';
+                this.tocList = document.getElementById('tocList');
+                this.loadingState = document.getElementById('loadingState');
+                this.errorState = document.getElementById('errorState');
+                this.documentationContent = document.getElementById('documentationContent');
+                this.backToTopBtn = document.getElementById('backToTopBtn');
+                this.parser = new SimpleMarkdownParser();
+                
+                this.init();
+            }
+            
+            /**
+             * Initialize the documentation renderer
+             */
+            async init() {
+                try {
+                    // Load and render the markdown
+                    const markdownContent = await this.loadMarkdown();
+                    const htmlContent = this.renderMarkdown(markdownContent);
+                    
+                    // Display the content
+                    this.displayContent(htmlContent);
+                    
+                    // Generate table of contents
+                    this.generateTableOfContents();
+                    
+                    // Set up scroll handling
+                    this.setupScrollHandling();
+                    
+                    // Handle initial hash navigation
+                    this.handleHashNavigation();
+                    
+                } catch (error) {
+                    console.error('Error loading documentation:', error);
+                    this.showError();
+                }
+            }
+            
+            /**
+             * Load the markdown content from the server
+             */
+            async loadMarkdown() {
+                try {
+                    const response = await fetch(this.markdownUrl);
+                    if (!response.ok) {
+                        throw new Error(`Failed to load markdown: ${response.status}`);
+                    }
+                    return await response.text();
+                } catch (error) {
+                    console.error('Error loading markdown:', error);
+                    throw error;
+                }
+            }
+            
+            /**
+             * Render markdown content to HTML
+             */
+            renderMarkdown(markdown) {
+                return this.parser.parse(markdown);
+            }
+            
+            /**
+             * Display the rendered HTML content
+             */
+            displayContent(htmlContent) {
+                this.loadingState.style.display = 'none';
+                this.documentationContent.innerHTML = htmlContent;
+                this.documentationContent.style.display = 'block';
+                
+                // Process images to use relative paths
+                this.processImages();
+                
+                // Process internal links
+                this.processInternalLinks();
+            }
+            
+            /**
+             * Process images to use correct relative paths
+             */
+            processImages() {
+                const images = this.documentationContent.querySelectorAll('img');
+                images.forEach(img => {
+                    const src = img.getAttribute('src');
+                    if (src && !src.startsWith('http') && !src.startsWith('//')) {
+                        // Convert relative paths to work from the docs folder
+                        img.setAttribute('src', '../' + src);
+                    }
+                });
+            }
+            
+            /**
+             * Process internal links for smooth scrolling
+             */
+            processInternalLinks() {
+                const links = this.documentationContent.querySelectorAll('a[href^="#"]');
+                links.forEach(link => {
+                    link.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        const targetId = link.getAttribute('href').substring(1);
+                        const targetElement = document.getElementById(targetId);
+                        if (targetElement) {
+                            targetElement.scrollIntoView({
+                                behavior: 'smooth',
+                                block: 'start'
+                            });
+                            // Update URL hash
+                            window.history.pushState(null, null, `#${targetId}`);
+                        }
+                    });
+                });
+            }
+            
+            /**
+             * Generate table of contents from headings
+             */
+            generateTableOfContents() {
+                const headings = this.documentationContent.querySelectorAll('h1, h2, h3');
+                const tocItems = [];
+                
+                headings.forEach((heading, index) => {
+                    const level = parseInt(heading.tagName.charAt(1));
+                    const text = heading.textContent.trim();
+                    const id = heading.id || `heading-${index}`;
+                    
+                    // Ensure heading has an ID
+                    if (!heading.id) {
+                        heading.id = id;
+                    }
+                    
+                    // Only include h2 and h3 headings in TOC (skip h1 as it's the main title)
+                    if (level <= 3 && level > 1) {
+                        tocItems.push({
+                            level: level,
+                            text: text,
+                            id: id
+                        });
+                    }
+                });
+                
+                // Generate TOC HTML
+                let tocHtml = '';
+                tocItems.forEach(item => {
+                    tocHtml += `<li><a href="#${item.id}">${item.text}</a></li>`;
+                });
+                
+                this.tocList.innerHTML = tocHtml;
+            }
+            
+            /**
+             * Set up scroll handling for back-to-top button
+             */
+            setupScrollHandling() {
+                window.addEventListener('scroll', () => {
+                    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                    
+                    // Show/hide back to top button
+                    if (scrollTop > 300) {
+                        this.backToTopBtn.classList.add('visible');
+                    } else {
+                        this.backToTopBtn.classList.remove('visible');
+                    }
+                });
+            }
+            
+            /**
+             * Handle hash navigation on page load
+             */
+            handleHashNavigation() {
+                const hash = window.location.hash;
+                if (hash) {
+                    setTimeout(() => {
+                        const targetElement = document.querySelector(hash);
+                        if (targetElement) {
+                            targetElement.scrollIntoView({
+                                behavior: 'smooth',
+                                block: 'start'
+                            });
+                        }
+                    }, 100);
+                }
+            }
+            
+            /**
+             * Show error state
+             */
+            showError() {
+                this.loadingState.style.display = 'none';
+                this.errorState.style.display = 'block';
+            }
+        }
+        
+        /**
+         * Scroll to top of page
+         */
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+        
+        // Initialize the documentation renderer when DOM is ready
+        document.addEventListener('DOMContentLoaded', () => {
+            new StyleGuideRenderer();
+        });
+    </script>
+</body>
+</html>
