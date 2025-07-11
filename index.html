@@ -5,6 +5,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pace Applied Solutions - Public Assets & Style Guide</title>
     
+    <!-- SEO and Rich Link Preview Meta Tags -->
+    <meta name="description" content="Comprehensive style guide and component library for Pace Applied Solutions. Explore our design system, color palette, typography, and interactive components for modern business applications.">
+    <meta name="keywords" content="Pace Applied Solutions, style guide, design system, component library, UI components, brand guidelines, color palette, typography">
+    <meta name="author" content="Pace Applied Solutions">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph Tags (Facebook, LinkedIn, General) -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Pace Applied Solutions">
+    <meta property="og:title" content="Pace Applied Solutions - Style Guide & Component Library">
+    <meta property="og:description" content="Comprehensive style guide and component library for Pace Applied Solutions. Explore our design system, color palette, typography, and interactive components.">
+    <meta property="og:url" content="https://white-mud-0cad69810.2.azurestaticapps.net/">
+    <meta property="og:image" content="https://white-mud-0cad69810.2.azurestaticapps.net/assets/preview.png">
+    <meta property="og:image:alt" content="Pace Applied Solutions Style Guide Preview - Comprehensive design system and component library">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:locale" content="en_US">
+    
+    <!-- Twitter Card Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@PaceAppliedSolutions">
+    <meta name="twitter:creator" content="@PaceAppliedSolutions">
+    <meta name="twitter:title" content="Pace Applied Solutions - Style Guide & Component Library">
+    <meta name="twitter:description" content="Comprehensive style guide and component library for Pace Applied Solutions. Explore our design system, color palette, typography, and interactive components.">
+    <meta name="twitter:image" content="https://white-mud-0cad69810.2.azurestaticapps.net/assets/preview.png">
+    <meta name="twitter:image:alt" content="Pace Applied Solutions Style Guide Preview">
+    
+    <!-- Microsoft Teams & Outlook Cards -->
+    <meta name="msapplication-TileColor" content="#EB9110">
+    <meta name="msapplication-TileImage" content="./assets/logo/android-chrome-192x192.png">
+    <meta name="msapplication-config" content="./browserconfig.xml">
+    
+    <!-- Web App Manifest -->
+    <link rel="manifest" href="./site.webmanifest">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://white-mud-0cad69810.2.azurestaticapps.net/">
+    
     <!-- Favicon and Icons -->
     <link rel="icon" type="image/x-icon" href="./assets/logo/favicon.ico">
     <link rel="icon" type="image/png" sizes="16x16" href="./assets/logo/favicon-16x16.png">
@@ -44,6 +83,7 @@
         loadLocalConfig().then(() => {
             // Load main configuration and other scripts sequentially
             const scripts = [
+                './scripts/meta-tags.js',  // Load meta tags first for rich previews
                 './scripts/config.js',
                 './scripts/utils.js',
                 './scripts/auth.js',

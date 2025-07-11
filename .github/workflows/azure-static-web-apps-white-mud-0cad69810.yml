@@ -34,8 +34,12 @@ jobs:
         env:
           AZURE_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
           AZURE_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
+          NODE_ENV: ${{ github.event_name == 'push' && 'production' || 'preview' }}
+          GITHUB_RUN_NUMBER: ${{ github.run_number }}
+          GITHUB_REF_NAME: ${{ github.ref_name }}
         run: |
           node scripts/generate-config.js
+          node scripts/generate-preview.js
           
       - name: Build And Deploy
         id: builddeploy

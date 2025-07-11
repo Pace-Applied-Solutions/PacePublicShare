@@ -1,0 +1,17 @@
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://white-mud-0cad69810.2.azurestaticapps.net/sitemap.xml
+
+# Crawl-delay for bots
+Crawl-delay: 1
+
+# Disallow sensitive paths (if any)
+# Disallow: /admin/
+# Disallow: /api/
+
+# Allow all public assets
+Allow: /assets/
+Allow: /styleguide/
+Allow: /docs/
