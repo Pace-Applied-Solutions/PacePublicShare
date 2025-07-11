@@ -838,7 +838,7 @@
     position: sticky;
     top: 0;
     z-index: 1000;
-    padding: 0.5rem 0;
+    padding: 0.25rem 0;
 }
 
 .pace-app-header-content {
@@ -855,13 +855,13 @@
 }
 
 .pace-app-header-logo {
-    height: 1.75rem;
+    height: 1.5rem;
     width: auto;
 }
 
 .pace-app-header-title {
     margin: 0;
-    font-size: 1.125rem;
+    font-size: 1rem;
     font-weight: 600;
     color: #fff;
 }
@@ -880,11 +880,11 @@
 /* Responsive app header */
 @media (max-width: 767px) {
     .pace-app-header-title {
-        font-size: 0.875rem;
+        font-size: 0.75rem;
     }
     
     .pace-app-header-logo {
-        height: 1.25rem;
+        height: 1rem;
     }
     
     .pace-user-info {
