@@ -20,6 +20,22 @@ class PaceAuth {
      */
     async initializeMSAL() {
         try {
+            // Check if this is a test deployment URL and should use demo mode
+            if (this.isTestDeploymentUrl()) {
+                console.log('🧪 Test deployment detected - enabling automatic demo mode');
+                console.log('🎭 Auto-simulating demo user for test deployment');
+                
+                // Automatically simulate demo user for test deployments
+                this.simulateDemoUser();
+                
+                // Auto-sign in the demo user immediately
+                setTimeout(() => {
+                    this.simulateSignIn();
+                }, 1000); // Small delay to ensure UI is ready
+                
+                return;
+            }
+
             // Validate configuration before proceeding
             if (!this.validateConfiguration()) {
                 throw new Error('Invalid authentication configuration detected');
@@ -53,22 +69,46 @@ class PaceAuth {
     }
 
     /**
+     * Check if the current URL is a test deployment URL
+     * Test deployments follow the pattern: https://white-mud-0cad69810-*.centralus.2.azurestaticapps.net/
+     */
+    isTestDeploymentUrl() {
+        const currentUrl = window.location.href;
+        
+        // Pattern for Azure Static Web Apps test deployments
+        const testDeploymentPattern = /https:\/\/white-mud-0cad69810-.*\.centralus\.2\.azurestaticapps\.net\//;
+        
+        const isTestUrl = testDeploymentPattern.test(currentUrl);
+        
+        if (isTestUrl) {
+            console.log('🧪 Test deployment URL detected:', currentUrl);
+        }
+        
+        return isTestUrl;
+    }
+
+    /**
      * Simulate a demo user for testing profile photo functionality
      */
     simulateDemoUser() {
         console.log('🎭 Simulating demo user for profile photo testing');
         
-        // Create a mock user account with profile photo
+        // Create a mock user account with more realistic profile data
         this.account = {
-            name: 'Demo User',
-            username: 'demo.user@paceappliedsolutions.com',
-            email: 'demo.user@paceappliedsolutions.com',
+            name: 'Alex Johnson',
+            username: 'alex.johnson@paceappliedsolutions.com',
+            email: 'alex.johnson@paceappliedsolutions.com',
+            displayName: 'Alex Johnson',
+            givenName: 'Alex',
+            surname: 'Johnson',
+            jobTitle: 'Senior Developer',
+            department: 'Engineering',
             photo: null // Will be set after "authentication"
         };
         
         // Set as authenticated but don't notify yet (wait for photo)
         this.isAuthenticated = true;
-        console.log('✅ Demo user account created');
+        console.log('✅ Demo user account created with realistic profile data');
     }
 
     /**
@@ -99,10 +139,10 @@ class PaceAuth {
             // Simulate realistic photo loading delay
             await new Promise(resolve => setTimeout(resolve, 1000));
             
-            // Set the profile photo
+            // Set the profile photo with better styling
             this.account.photo = `data:image/svg+xml;base64,${btoa(`
                 <svg width="40" height="40" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="20" cy="20" r="20" fill="#0078d4"/>
+                    <circle cx="20" cy="20" r="20" fill="#EB9110"/>
                     <text x="20" y="26" font-family="Arial, sans-serif" font-size="14" 
                           font-weight="bold" text-anchor="middle" fill="white">${initials}</text>
                 </svg>
@@ -116,10 +156,17 @@ class PaceAuth {
             PaceUtils.logInteraction('demo_signin_success', {
                 userEmail: this.account.username,
                 authMethod: 'demo',
-                photoLoaded: true
+                photoLoaded: true,
+                isTestDeployment: this.isTestDeploymentUrl()
             });
             
-            PaceUtils.showNotification(`Welcome, ${this.account.name}! (Demo Mode)`, 'success');
+            // Show appropriate notification based on whether it's a test deployment
+            if (this.isTestDeploymentUrl()) {
+                PaceUtils.showNotification(`Welcome, ${this.account.name}! (Test Deployment - Auto Demo)`, 'info');
+            } else {
+                PaceUtils.showNotification(`Welcome, ${this.account.name}! (Demo Mode)`, 'success');
+            }
+            
             return { account: this.account };
             
         } catch (error) {
@@ -177,6 +224,12 @@ class PaceAuth {
         try {
             PaceUtils.logInteraction('auth_signin_attempt');
             
+            // Check if this is a test deployment URL and should use demo mode
+            if (this.isTestDeploymentUrl()) {
+                console.log('🧪 Test deployment URL - using demo mode for sign in');
+                return await this.simulateSignIn();
+            }
+            
             // If MSAL is not available, use demo mode
             if (!this.msalInstance) {
                 console.log('🎭 Using demo mode for sign in');
@@ -232,6 +285,18 @@ class PaceAuth {
     async signOut() {
         try {
             PaceUtils.logInteraction('auth_signout_attempt');
+            
+            // Check if this is a test deployment URL and should use demo mode
+            if (this.isTestDeploymentUrl()) {
+                console.log('🧪 Test deployment URL - using demo mode for sign out');
+                this.account = null;
+                this.isAuthenticated = false;
+                this.notifyAuthCallbacks(false);
+                
+                PaceUtils.logInteraction('demo_signout_success');
+                PaceUtils.showNotification('Successfully signed out (Test Deployment)', 'info');
+                return;
+            }
             
             // If MSAL is not available, use demo mode
             if (!this.msalInstance) {
@@ -420,7 +485,8 @@ class PaceAuth {
         return {
             isAuthenticated: this.isAuthenticated,
             account: this.account,
-            isPaceUser: this.isUserFromPaceDomain()
+            isPaceUser: this.isUserFromPaceDomain(),
+            isTestDeployment: this.isTestDeploymentUrl()
         };
     }
 

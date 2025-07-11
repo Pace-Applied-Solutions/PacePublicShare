@@ -26,6 +26,24 @@ For testing and environments without Microsoft 365 access:
 - Simulates realistic authentication flow
 - Provides fallback functionality for development
 
+### Test Deployment Auto-Demo
+When accessed via Azure Static Web Apps test deployment URLs (pattern: `https://white-mud-0cad69810-*.centralus.2.azurestaticapps.net/`):
+- **Automatic Demo Mode**: No user interaction required
+- **Simulated User Profile**: Realistic demo user with profile photo
+- **Full Authentication Experience**: Shows authenticated UI components
+- **No Configuration Needed**: Works out-of-the-box for testing
+
+This enables developers and testers to:
+- Review authenticated layouts without real credentials
+- Test user interface components in pull request previews
+- Validate design changes in test environments
+- Demonstrate features without requiring Azure AD setup
+
+**Production vs Test Behavior**:
+- **Production URLs**: Normal Microsoft 365 authentication
+- **Test Deployment URLs**: Automatic demo authentication
+- **Development**: Demo mode available on demand
+
 ### Troubleshooting
 - **No photo displayed**: Check `User.Read` permissions and tenant settings
 - **Default avatar shown**: Normal when users haven't set profile photos
@@ -34,6 +52,32 @@ For testing and environments without Microsoft 365 access:
 ---
 
 For complete setup instructions, see [AUTHENTICATION_SETUP.md](./AUTHENTICATION_SETUP.md).
+
+## URL Pattern Detection
+
+The application automatically detects the deployment environment and adjusts authentication behavior accordingly:
+
+### Production URLs
+- **Primary Site**: `https://white-mud-0cad69810.2.azurestaticapps.net/`
+- **Custom Domain**: Your configured custom domain
+- **Behavior**: Full Microsoft 365 authentication required
+
+### Test Deployment URLs
+- **Pattern**: `https://white-mud-0cad69810-*.centralus.2.azurestaticapps.net/`
+- **Examples**:
+  - `https://white-mud-0cad69810-123.centralus.2.azurestaticapps.net/`
+  - `https://white-mud-0cad69810-feature-branch.centralus.2.azurestaticapps.net/`
+- **Behavior**: Automatic demo authentication with simulated user
+
+### Development URLs
+- **Local Development**: `http://localhost:*` or `http://127.0.0.1:*`
+- **Behavior**: Demo mode available on demand
+
+This pattern recognition ensures that:
+- ✅ Production sites maintain security with real authentication
+- ✅ Test deployments work immediately for design review
+- ✅ Development environments support flexible testing
+- ✅ No configuration changes needed between environments
 
 ## Security Overview
 

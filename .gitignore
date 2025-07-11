@@ -47,3 +47,6 @@ local-settings.json
 # Microsoft/Azure specific
 .azure/
 azd-env/
+
+# Test files (temporary)
+test-deployment-demo.html
