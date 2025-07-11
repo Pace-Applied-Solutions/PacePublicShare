@@ -235,11 +235,8 @@ class PaceApp {
                 this.setLoading(signInBtn, false);
             }
         } else {
-            // Demo mode - show examples without auth
-            this.showExamples();
-            this.showNotification('Demo mode active - showing examples without authentication.', 'info');
-            
-            // Simulate authenticated UI for demo purposes
+            // Demo mode - simulate user authentication for profile display
+            this.showNotification('Demo mode: Signing in with demo user profile.', 'info');
             this.simulateAuthenticatedState();
         }
     }
@@ -284,11 +281,8 @@ class PaceApp {
      * Handle view examples action
      */
     handleViewExamples() {
-        if (this.isAuthenticated || !this.auth) {
-            this.showExamples();
-        } else {
-            this.showNotification('Please sign in to access interactive examples.', 'warning');
-        }
+        // Always show examples regardless of authentication state
+        this.showExamples();
     }
 
     /**
@@ -336,7 +330,7 @@ class PaceApp {
         const viewExamplesBtn = document.getElementById('viewExamplesBtn');
         
         if (authenticated && account) {
-            // User is authenticated - show authenticated UI
+            // User is authenticated - show user profile
             if (signInBtn) signInBtn.classList.add('pace-hidden');
             if (userProfile) {
                 userProfile.classList.remove('pace-hidden');
@@ -347,24 +341,29 @@ class PaceApp {
                 viewExamplesBtn.onclick = () => this.showExamples();
             }
             
-            // Auto-show examples for authenticated users
+            // Show examples and welcome message
             this.showExamples();
             this.showNotification(`Welcome back, ${account.name || 'User'}!`, 'success');
         } else {
-            // User is not authenticated - show landing UI
+            // User is not authenticated - show sign in button but still allow access to examples
             if (signInBtn) signInBtn.classList.remove('pace-hidden');
             if (userProfile) userProfile.classList.add('pace-hidden');
             if (viewExamplesBtn) {
-                if (this.auth) {
-                    viewExamplesBtn.innerHTML = '<i class="fas fa-sign-in-alt"></i> Sign In to View';
+                // Landing page button should always show "View Examples"
+                if (viewExamplesBtn.getAttribute('onclick')) {
+                    viewExamplesBtn.innerHTML = '<i class="fas fa-play"></i> View Examples';
+                    viewExamplesBtn.onclick = () => this.showExamples();
+                } else if (this.auth) {
+                    viewExamplesBtn.innerHTML = '<i class="fas fa-sign-in-alt"></i> Sign In for Profile';
                     viewExamplesBtn.onclick = () => this.handleSignIn();
                 } else {
-                    viewExamplesBtn.innerHTML = '<i class="fas fa-play"></i> View Demo';
+                    viewExamplesBtn.innerHTML = '<i class="fas fa-play"></i> View Examples';
                     viewExamplesBtn.onclick = () => this.showExamples();
                 }
             }
             
-            this.showLanding();
+            // Always show examples, regardless of authentication state
+            this.showExamples();
         }
     }
 
@@ -544,7 +543,7 @@ class PaceApp {
             // Update notice content based on configuration state
             if (!status.hasLocalConfig) {
                 configNotice.querySelector('p').innerHTML = 
-                    'Authentication is running in demo mode. <a href="./docs/AUTHENTICATION_SETUP.md" target="_blank" rel="noopener">Configure authentication</a> for production use.';
+                    'Microsoft 365 authentication is running in demo mode. <a href="./docs/AUTHENTICATION_SETUP.md" target="_blank" rel="noopener">Configure authentication</a> to enable user profile features.';
             } else if (!status.isValid) {
                 configNotice.classList.remove('pace-notification-warning');
                 configNotice.classList.add('pace-notification-error');
@@ -584,8 +583,8 @@ window.demoNotification = function(type) {
     const messages = {
         success: 'Operation completed successfully!',
         error: 'Code copied to clipboard! (Demo mode active)',
-        warning: 'Please sign in to access interactive examples.',
-        info: 'Demo mode active - showing examples without authentication.'
+        warning: 'This is a demo warning notification.',
+        info: 'This is a demo info notification.'
     };
     
     if (window.paceApp) {
