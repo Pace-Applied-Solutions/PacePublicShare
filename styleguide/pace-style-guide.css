@@ -1016,8 +1016,37 @@ body[data-theme="dark"] {
         height: 1rem;
     }
     
+    .pace-app-header-right {
+        /* Allow header right content to wrap if needed */
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+    
     .pace-user-info {
-        display: none;
+        /* Keep user info visible on mobile but with smaller text */
+        font-size: 0.75rem;
+    }
+    
+    .pace-user-info .pace-user-name {
+        font-size: 0.875rem;
+        font-weight: 600;
+    }
+    
+    .pace-user-info .pace-user-email {
+        font-size: 0.75rem;
+        opacity: 0.8;
+    }
+    
+    .pace-user-profile {
+        /* Ensure user profile displays properly on mobile */
+        min-width: 0;
+        flex-shrink: 1;
+    }
+    
+    .pace-user-avatar {
+        /* Slightly smaller avatar on mobile */
+        width: 28px;
+        height: 28px;
     }
 }
 
