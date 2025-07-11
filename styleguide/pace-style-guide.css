@@ -752,6 +752,67 @@
 }
 
 /* ================================================
+   Card-Style Notification - inline notification with card appearance
+   ================================================ */
+.pace-notification-card {
+    position: static !important;
+    animation: none !important;
+    margin: var(--pace-spacing-lg) 0;
+    display: flex;
+    align-items: flex-start;
+    gap: var(--pace-spacing-md);
+    padding: var(--pace-spacing-lg);
+    background: var(--pace-card-background);
+    border: 1px solid var(--pace-border-color);
+    border-radius: var(--pace-border-radius-lg);
+    box-shadow: 0 2px 8px var(--pace-shadow-color);
+    border-left: 4px solid #28a745;
+}
+
+.pace-notification-card i {
+    font-size: 1.5rem;
+    color: #28a745;
+    margin-top: 0.125rem;
+    flex-shrink: 0;
+}
+
+/* Fallback for when Font Awesome is blocked */
+.pace-notification-card i.fas.fa-check-circle::before {
+    content: "✓";
+    font-family: system-ui, -apple-system, sans-serif;
+    font-weight: bold;
+    font-style: normal;
+    display: inline-block;
+    width: 1.5rem;
+    height: 1.5rem;
+    line-height: 1.5rem;
+    text-align: center;
+    background: #28a745;
+    color: white;
+    border-radius: 50%;
+    font-size: 1rem;
+}
+
+.pace-notification-card div {
+    flex: 1;
+}
+
+.pace-notification-card strong {
+    display: block;
+    font-size: var(--pace-font-size-lg);
+    font-weight: 600;
+    color: var(--pace-text-color);
+    margin-bottom: var(--pace-spacing-sm);
+}
+
+.pace-notification-card p {
+    margin: 0;
+    color: var(--pace-text-light);
+    font-size: var(--pace-font-size-base);
+    line-height: 1.5;
+}
+
+/* ================================================
    Configuration Notice - specific styling for header notices
    ================================================ */
 .pace-config-notice {
