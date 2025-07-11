@@ -190,8 +190,15 @@ class CustomPaceApp extends PaceApp {
 
 ## 📖 Documentation
 
-- **[Complete Style Guide](./PacePublicShare/docs/PACE_STYLE_GUIDE.md)**: Comprehensive documentation of all components, guidelines, and best practices
-- **[Authentication Setup](./PacePublicShare/docs/AUTHENTICATION_SETUP.md)**: Step-by-step guide for configuring Microsoft 365 authentication
+- **[Complete Style Guide](./docs/style-guide.html)**: Comprehensive design system documentation rendered as interactive HTML with full navigation and accessibility features
+- **[Authentication Setup](./docs/AUTHENTICATION_SETUP.md)**: Step-by-step guide for configuring Microsoft 365 authentication
+
+### Documentation Features
+- **Interactive HTML Rendering**: Style guide documentation is now rendered as properly formatted HTML instead of raw markdown
+- **Table of Contents Navigation**: Full navigation system with smooth scrolling and section linking
+- **Responsive Design**: Documentation adapts to all screen sizes and devices
+- **Accessibility Compliant**: Meets WCAG 2.1 AA standards for screen readers and keyboard navigation
+- **Professional Presentation**: Clean, branded design with proper typography and code highlighting
 
 ## 🔧 Configuration
 
