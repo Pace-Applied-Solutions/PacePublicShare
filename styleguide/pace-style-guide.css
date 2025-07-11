@@ -871,13 +871,13 @@
    Authenticated App Header
    ================================================ */
 .pace-app-header {
-    background: var(--pace-card-background);
-    border-bottom: 1px solid var(--pace-border-color);
+    background: var(--pace-primary-color);
+    border-bottom: 1px solid var(--pace-primary-dark);
     box-shadow: 0 2px 4px var(--pace-shadow-color);
     position: sticky;
     top: 0;
     z-index: 1000;
-    padding: 0.75rem 0;
+    padding: 0.25rem 0;
 }
 
 .pace-app-header-content {
@@ -894,15 +894,15 @@
 }
 
 .pace-app-header-logo {
-    height: 2rem;
+    height: 1.5rem;
     width: auto;
 }
 
 .pace-app-header-title {
     margin: 0;
-    font-size: 1.25rem;
+    font-size: 1rem;
     font-weight: 600;
-    color: var(--pace-text-color);
+    color: #fff;
 }
 
 .pace-app-header-right {
@@ -919,11 +919,11 @@
 /* Responsive app header */
 @media (max-width: 767px) {
     .pace-app-header-title {
-        font-size: 1rem;
+        font-size: 0.75rem;
     }
     
     .pace-app-header-logo {
-        height: 1.5rem;
+        height: 1rem;
     }
     
     .pace-user-info {
