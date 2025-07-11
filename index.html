@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pace Applied Solutions - Public Assets & Style Guide</title>
+    
+    <!-- Favicon and Icons -->
+    <link rel="icon" type="image/x-icon" href="./assets/logo/favicon.ico">
+    <link rel="icon" type="image/png" sizes="16x16" href="./assets/logo/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./assets/logo/favicon-32x32.png">
+    <link rel="apple-touch-icon" href="./assets/logo/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="./assets/logo/android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="./assets/logo/android-chrome-512x512.png">
+    
+    <!-- External Libraries -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://alcdn.msauth.net/browser/2.35.0/js/msal-browser.min.js"></script>
+    
+    <!-- Pace Style Guide CSS -->
+    <link rel="stylesheet" href="./styleguide/pace-style-guide.css">
+    
+    <!-- Pace Scripts -->
+    <!-- Load local config first (if it exists) to make LOCAL_CONFIG available -->
+    <script>
+        // Dynamically load config.local.js if it exists
+        function loadLocalConfig() {
+            return new Promise((resolve) => {
+                const script = document.createElement('script');
+                script.src = './scripts/config.local.js';
+                script.onload = () => {
+                    console.log('📝 config.local.js loaded successfully');
+                    resolve();
+                };
+                script.onerror = () => {
+                    console.log('📝 config.local.js not found - running in demo mode');
+                    resolve();
+                };
+                document.head.appendChild(script);
+            });
+        }
+
+        // Load configuration and then load the rest of the scripts
+        loadLocalConfig().then(() => {
+            // Load main configuration and other scripts sequentially
+            const scripts = [
+                './scripts/config.js',
+                './scripts/utils.js',
+                './scripts/auth.js',
+                './scripts/app.js'
+            ];
+            
+            let loadedCount = 0;
+            scripts.forEach((src, index) => {
+                const script = document.createElement('script');
+                script.src = src;
+                script.onload = () => {
+                    loadedCount++;
+                    console.log(`📦 Loaded script ${index + 1}/${scripts.length}: ${src}`);
+                    if (loadedCount === scripts.length) {
+                        console.log('✅ All scripts loaded successfully');
+                        // Dispatch a custom event when all scripts are loaded
+                        window.dispatchEvent(new Event('scriptsLoaded'));
+                    }
+                };
+                script.onerror = () => {
+                    console.error(`❌ Failed to load script: ${src}`);
+                };
+                document.head.appendChild(script);
+            });
+        });
+    </script>
+</head>
+<body class="pace-base">
+    <!-- Authenticated Header (Hidden by default, shown when signed in) -->
+    <header id="authenticatedHeader" class="pace-app-header pace-hidden">
+        <div class="pace-container">
+            <div class="pace-app-header-content">
+                <div class="pace-app-header-left">
+                    <img src="./assets/logo/Pace-logo-orange.png" alt="Pace Applied Solutions" class="pace-app-header-logo">
+                    <h1 class="pace-app-header-title">Style Guide & Components</h1>
+                </div>
+                <div class="pace-app-header-right">
+                    <div id="authenticatedUserProfile" class="pace-user-profile">
+                        <img id="authenticatedUserAvatar" class="pace-user-avatar" src="" alt="User Avatar">
+                        <div class="pace-user-info">
+                            <p class="pace-user-name" id="authenticatedUserName"></p>
+                            <p class="pace-user-email" id="authenticatedUserEmail"></p>
+                        </div>
+                        <button id="authenticatedSignOutBtn" class="pace-button pace-button-secondary pace-button-small">
+                            <i class="fas fa-sign-out-alt"></i>
+                            Sign Out
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Landing Section (Always Visible) -->
+    <div id="landingSection" class="pace-container">
+        <!-- Header -->
+        <header class="pace-index-header">
+            <img src="./assets/logo/Pace-logo-orange.png" alt="Pace Applied Solutions" class="pace-index-logo">
+            <h1 class="pace-heading-1">Public Assets & Style Guide</h1>
+            <p class="pace-text-large pace-index-subtitle">
+                Official brand assets, design system, and implementation resources for Pace Applied Solutions projects.
+            </p>
+            
+            <!-- Authentication Control -->
+            <div class="pace-auth-section">                
+                <div id="auth-controls">
+                    <button id="signInBtn" class="pace-button pace-button-primary">
+                        <i class="fas fa-sign-in-alt"></i>
+                        Sign In to Access Examples
+                    </button>
+                    <div id="userProfile" class="pace-user-profile pace-hidden">
+                        <img id="userAvatar" class="pace-user-avatar" src="" alt="User Avatar">
+                        <div class="pace-user-info">
+                            <p class="pace-user-name" id="userName"></p>
+                            <p class="pace-user-email" id="userEmail"></p>
+                        </div>
+                        <button id="signOutBtn" class="pace-button pace-button-secondary">
+                            <i class="fas fa-sign-out-alt"></i>
+                            Sign Out
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Quick Links -->
+        <div class="pace-section pace-index-quick-links">
+            <div class="pace-grid pace-grid-3">
+                <div class="pace-card">
+                    <div class="pace-card-content">
+                        <i class="fas fa-rocket pace-index-icon"></i>
+                        <h3 class="pace-heading-3">Interactive Examples</h3>
+                        <p class="pace-text-body">Live component library with working Microsoft 365 authentication.</p>
+                        <button id="viewExamplesBtn" class="pace-button pace-button-primary" onclick="showExamples()">
+                            <i class="fas fa-play"></i>
+                            Launch Examples
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="pace-card">
+                    <div class="pace-card-content">
+                        <i class="fas fa-book pace-index-icon"></i>
+                        <h3 class="pace-heading-3">Style Guide</h3>
+                        <p class="pace-text-body">Complete design system documentation with implementation guidelines.</p>
+                        <a href="./PACE_STYLE_GUIDE.md" class="pace-button pace-button-primary" target="_blank">
+                            <i class="fas fa-file-alt"></i>
+                            Read Documentation
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="pace-card">
+                    <div class="pace-card-content">
+                        <i class="fas fa-images pace-index-icon"></i>
+                        <h3 class="pace-heading-3">Brand Assets</h3>
+                        <p class="pace-text-body">Logos, icons, and brand assets in multiple formats for all platforms.</p>
+                        <a href="./assets/logo/" class="pace-button pace-button-primary" target="_blank">
+                            <i class="fas fa-download"></i>
+                            Download Assets
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Start -->
+        <div class="pace-section">
+            <h2 class="pace-section-title">Quick Start</h2>
+            <div class="pace-grid pace-grid-2">
+                <div class="pace-card">
+                    <div class="pace-card-content">
+                        <h4 class="pace-heading-4">CSS Framework</h4>
+                        <p class="pace-text-body">Include the Pace design system in your project:</p>
+                        <pre class="pace-pre"><code class="pace-code">&lt;link rel="stylesheet" href="https://raw.githubusercontent.com/Pace-Applied-Solutions/PacePublicShare/main/styleguide/pace-style-guide.css"&gt;
+&lt;button class="pace-button pace-button-primary"&gt;Get Started&lt;/button&gt;</code></pre>
+                        <button class="pace-button pace-button-outline pace-button-copy" onclick="copyToClipboard(this.previousElementSibling.textContent)">
+                            <i class="fas fa-copy"></i>
+                            Copy Code
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="pace-card">
+                    <div class="pace-card-content">
+                        <h4 class="pace-heading-4">Brand Assets</h4>
+                        <p class="pace-text-body">Reference logos directly from GitHub CDN:</p>
+                        <pre class="pace-pre"><code class="pace-code">&lt;img src="https://raw.githubusercontent.com/Pace-Applied-Solutions/PacePublicShare/main/assets/logo/Pace-logo-orange.png" 
+     alt="Pace Applied Solutions" width="200"&gt;</code></pre>
+                        <button class="pace-button pace-button-outline pace-button-copy" onclick="copyToClipboard(this.previousElementSibling.textContent)">
+                            <i class="fas fa-copy"></i>
+                            Copy Code
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Features -->
+        <div class="pace-section">
+            <h2 class="pace-section-title">What's Included</h2>
+            <div class="pace-grid pace-grid-4">
+                <div class="pace-card">
+                    <div class="pace-card-content">
+                        <i class="fas fa-palette pace-index-feature-icon"></i>
+                        <h5 class="pace-index-feature-title">Design System</h5>
+                        <p class="pace-text-small">Complete CSS framework with pace- prefixed classes</p>
+                    </div>
+                </div>
+                
+                <div class="pace-card">
+                    <div class="pace-card-content">
+                        <i class="fas fa-mobile-alt pace-index-feature-icon"></i>
+                        <h5 class="pace-index-feature-title">Responsive</h5>
+                        <p class="pace-text-small">Mobile-first design with modern CSS Grid and Flexbox</p>
+                    </div>
+                </div>
+                
+                <div class="pace-card">
+                    <div class="pace-card-content">
+                        <i class="fas fa-universal-access pace-index-feature-icon"></i>
+                        <h5 class="pace-index-feature-title">Accessible</h5>
+                        <p class="pace-text-small">WCAG 2.1 AA compliant with proper contrast ratios</p>
+                    </div>
+                </div>
+                
+                <div class="pace-card">
+                    <div class="pace-card-content">
+                        <i class="fas fa-lock pace-index-feature-icon"></i>
+                        <h5 class="pace-index-feature-title">Authentication</h5>
+                        <p class="pace-text-small">Microsoft 365 integration with MSAL.js</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Examples Section (Visible After Authentication) -->
+    <div id="examplesSection" class="pace-container pace-hidden">
+        <!-- Welcome Message -->
+        <div class="pace-section">
+            <div class="pace-notification pace-notification-success">
+                <i class="fas fa-check-circle"></i>
+                <div>
+                    <strong>Welcome to the Interactive Style Guide!</strong>
+                    <p>You now have access to all interactive components and code examples. Copy any code snippet to use in your projects.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Authentication Demo -->
+        <div class="pace-section">
+            <h2 class="pace-section-title">Authentication Components</h2>
+            <p class="pace-section-description">
+                Modern split-screen authentication layout with Pace branding and Microsoft 365 integration.
+            </p>
+            
+            <div class="pace-auth-demo">
+                <div class="pace-auth-brand-section">
+                    <div class="pace-brand-content">
+                        <img src="./assets/logo/Pace-logo-white.png" alt="Pace Applied Solutions" class="pace-brand-logo">
+                        <h1 class="pace-brand-tagline">Secure Document Management</h1>
+                        <p class="pace-brand-description">
+                            Enterprise-grade documentation platform with advanced security features,
+                            version control, and collaborative tools designed for modern businesses.
+                        </p>
+                        <div class="pace-brand-features">
+                            <div class="pace-feature-item">
+                                <i class="fas fa-shield-alt"></i>
+                                <span>Enterprise Security</span>
+                            </div>
+                            <div class="pace-feature-item">
+                                <i class="fas fa-code-branch"></i>
+                                <span>Version Control</span>
+                            </div>
+                            <div class="pace-feature-item">
+                                <i class="fas fa-users"></i>
+                                <span>Team Collaboration</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="pace-auth-login-section">
+                    <div class="pace-login-form">
+                        <h2 class="pace-login-title">Welcome Back</h2>
+                        <p class="pace-login-subtitle">Sign in to access your documents</p>
+                        
+                        <button class="pace-button pace-button-microsoft pace-button-full">
+                            <i class="fab fa-microsoft"></i>
+                            Continue with Microsoft 365
+                        </button>
+                        
+                        <div class="pace-divider">
+                            <span>or</span>
+                        </div>
+                        
+                        <form class="pace-login-form-demo">
+                            <div class="pace-input-group">
+                                <input type="email" class="pace-input" placeholder="Email address" value="demo@paceappliedsolutions.com" readonly>
+                            </div>
+                            <div class="pace-input-group">
+                                <input type="password" class="pace-input" placeholder="Password" value="••••••••••" readonly>
+                            </div>
+                            <button type="button" class="pace-button pace-button-primary pace-button-full" onclick="demoNotification('info')">
+                                Sign In (Demo)
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Copy Code Button -->
+            <div class="pace-code-example">
+                <h4 class="pace-heading-4">Authentication Layout Code</h4>
+                <pre class="pace-pre"><code class="pace-code">&lt;div class="pace-auth-demo"&gt;
+  &lt;div class="pace-auth-brand-section"&gt;
+    &lt;div class="pace-brand-content"&gt;
+      &lt;img src="./assets/logo/Pace-logo-white.png" class="pace-brand-logo"&gt;
+      &lt;h1 class="pace-brand-tagline"&gt;Your App Title&lt;/h1&gt;
+      &lt;p class="pace-brand-description"&gt;Your app description...&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="pace-auth-login-section"&gt;
+    &lt;button class="pace-button pace-button-microsoft"&gt;
+      Continue with Microsoft 365
+    &lt;/button&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                <button class="pace-button pace-button-outline pace-button-copy" onclick="copyToClipboard(this.previousElementSibling.textContent)">
+                    <i class="fas fa-copy"></i>
+                    Copy Code
+                </button>
+            </div>
+        </div>
+
+        <!-- Brand Assets -->
+        <div class="pace-section">
+            <h2 class="pace-section-title">Brand Assets</h2>
+            <p class="pace-section-description">
+                Complete logo collection with different variants for various use cases.
+            </p>
+            
+            <div class="pace-logo-showcase">
+                <div class="pace-logo-example pace-light">
+                    <img src="./assets/logo/Pace-logo-orange.png" alt="Pace Logo Orange">
+                    <h5>Primary Orange Logo</h5>
+                    <p>For light backgrounds and primary branding</p>
+                </div>
+                <div class="pace-logo-example pace-light">
+                    <img src="./assets/logo/Pace-logo-blue.png" alt="Pace Logo Blue">
+                    <h5>Professional Blue Logo</h5>
+                    <p>For professional documents and secondary branding</p>
+                </div>
+                <div class="pace-logo-example pace-dark">
+                    <img src="./assets/logo/Pace-logo-white.png" alt="Pace Logo White">
+                    <h5>White Logo</h5>
+                    <p>For dark backgrounds and overlay contexts</p>
+                </div>
+            </div>
+            
+            <!-- Logo Usage Code -->
+            <div class="pace-code-example">
+                <h4 class="pace-heading-4">Logo Implementation</h4>
+                <pre class="pace-pre"><code class="pace-code">&lt;!-- Primary Orange Logo --&gt;
+&lt;img src="https://raw.githubusercontent.com/Pace-Applied-Solutions/PacePublicShare/main/assets/logo/Pace-logo-orange.png" 
+     alt="Pace Applied Solutions"&gt;
+
+&lt;!-- Professional Blue Logo --&gt;
+&lt;img src="https://raw.githubusercontent.com/Pace-Applied-Solutions/PacePublicShare/main/assets/logo/Pace-logo-blue.png" 
+     alt="Pace Applied Solutions"&gt;
+
+&lt;!-- White Logo (for dark backgrounds) --&gt;
+&lt;img src="https://raw.githubusercontent.com/Pace-Applied-Solutions/PacePublicShare/main/assets/logo/Pace-logo-white.png" 
+     alt="Pace Applied Solutions"&gt;</code></pre>
+                <button class="pace-button pace-button-outline pace-button-copy" onclick="copyToClipboard(this.previousElementSibling.textContent)">
+                    <i class="fas fa-copy"></i>
+                    Copy Code
+                </button>
+            </div>
+        </div>
+
+        <!-- Button Components -->
+        <div class="pace-section">
+            <h2 class="pace-section-title">Button Components</h2>
+            <p class="pace-section-description">
+                Standardized button styles with proper hover states and accessibility features.
+            </p>
+            
+            <div class="pace-button-group">
+                <button class="pace-button pace-button-primary">
+                    <i class="fas fa-save"></i>
+                    Primary Button
+                </button>
+                <button class="pace-button pace-button-secondary">
+                    <i class="fas fa-edit"></i>
+                    Secondary Button
+                </button>
+                <button class="pace-button pace-button-outline">
+                    <i class="fas fa-download"></i>
+                    Outline Button
+                </button>
+                <button class="pace-button pace-button-microsoft">
+                    <i class="fab fa-microsoft"></i>
+                    Microsoft Button
+                </button>
+                <button class="pace-button pace-button-primary" disabled>
+                    <i class="fas fa-spinner fa-spin"></i>
+                    Loading...
+                </button>
+                <button class="pace-button pace-button-icon" aria-label="Settings">
+                    <i class="fas fa-cog"></i>
+                </button>
+            </div>
+            
+            <!-- Button Code Examples -->
+            <div class="pace-code-example">
+                <h4 class="pace-heading-4">Button HTML</h4>
+                <pre class="pace-pre"><code class="pace-code">&lt;!-- Primary Button --&gt;
+&lt;button class="pace-button pace-button-primary"&gt;
+  &lt;i class="fas fa-save"&gt;&lt;/i&gt;
+  Primary Button
+&lt;/button&gt;
+
+&lt;!-- Secondary Button --&gt;
+&lt;button class="pace-button pace-button-secondary"&gt;
+  &lt;i class="fas fa-edit"&gt;&lt;/i&gt;
+  Secondary Button
+&lt;/button&gt;
+
+&lt;!-- Outline Button --&gt;
+&lt;button class="pace-button pace-button-outline"&gt;
+  &lt;i class="fas fa-download"&gt;&lt;/i&gt;
+  Outline Button
+&lt;/button&gt;
+
+&lt;!-- Microsoft Button --&gt;
+&lt;button class="pace-button pace-button-microsoft"&gt;
+  &lt;i class="fab fa-microsoft"&gt;&lt;/i&gt;
+  Microsoft Button
+&lt;/button&gt;
+
+&lt;!-- Icon Button --&gt;
+&lt;button class="pace-button pace-button-icon" aria-label="Settings"&gt;
+  &lt;i class="fas fa-cog"&gt;&lt;/i&gt;
+&lt;/button&gt;</code></pre>
+                <button class="pace-button pace-button-outline pace-button-copy" onclick="copyToClipboard(this.previousElementSibling.textContent)">
+                    <i class="fas fa-copy"></i>
+                    Copy Code
+                </button>
+            </div>
+        </div>
+
+        <!-- Card Components -->
+        <div class="pace-section">
+            <h2 class="pace-section-title">Card Components</h2>
+            <p class="pace-section-description">
+                Flexible card layouts for content organization and feature presentation.
+            </p>
+            
+            <div class="pace-grid pace-grid-3">
+                <div class="pace-card">
+                    <div class="pace-card-content">
+                        <i class="fas fa-chart-line pace-card-icon"></i>
+                        <h4 class="pace-heading-4">Analytics Dashboard</h4>
+                        <p class="pace-text-body">Comprehensive analytics with real-time data visualization and reporting capabilities.</p>
+                        <div class="pace-card-actions">
+                            <button class="pace-button pace-button-primary">View Dashboard</button>
+                            <button class="pace-button pace-button-outline">Learn More</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="pace-card">
+                    <div class="pace-card-content">
+                        <i class="fas fa-shield-alt pace-card-icon"></i>
+                        <h4 class="pace-heading-4">Security Center</h4>
+                        <p class="pace-text-body">Advanced security monitoring with threat detection and automated response systems.</p>
+                        <div class="pace-card-actions">
+                            <button class="pace-button pace-button-primary">Manage Security</button>
+                            <button class="pace-button pace-button-outline">View Logs</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="pace-card">
+                    <div class="pace-card-content">
+                        <i class="fas fa-users pace-card-icon"></i>
+                        <h4 class="pace-heading-4">Team Management</h4>
+                        <p class="pace-text-body">Streamlined team collaboration tools with role-based access and project tracking.</p>
+                        <div class="pace-card-actions">
+                            <button class="pace-button pace-button-primary">Manage Team</button>
+                            <button class="pace-button pace-button-outline">Invite Users</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Card Code Example -->
+            <div class="pace-code-example">
+                <h4 class="pace-heading-4">Card HTML Structure</h4>
+                <pre class="pace-pre"><code class="pace-code">&lt;div class="pace-card"&gt;
+  &lt;div class="pace-card-content"&gt;
+    &lt;i class="fas fa-chart-line pace-card-icon"&gt;&lt;/i&gt;
+    &lt;h4 class="pace-heading-4"&gt;Card Title&lt;/h4&gt;
+    &lt;p class="pace-text-body"&gt;Card description goes here...&lt;/p&gt;
+    &lt;div class="pace-card-actions"&gt;
+      &lt;button class="pace-button pace-button-primary"&gt;Primary Action&lt;/button&gt;
+      &lt;button class="pace-button pace-button-outline"&gt;Secondary Action&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                <button class="pace-button pace-button-outline pace-button-copy" onclick="copyToClipboard(this.previousElementSibling.textContent)">
+                    <i class="fas fa-copy"></i>
+                    Copy Code
+                </button>
+            </div>
+        </div>
+
+        <!-- Form Components -->
+        <div class="pace-section">
+            <h2 class="pace-section-title">Form Components</h2>
+            <p class="pace-section-description">
+                Accessible form controls with proper validation states and user feedback.
+            </p>
+            
+            <div class="pace-grid pace-grid-2">
+                <div class="pace-card">
+                    <div class="pace-card-content">
+                        <h4 class="pace-heading-4">Contact Form Example</h4>
+                        <form class="pace-form" onsubmit="demoNotification('success'); return false;">
+                            <div class="pace-form-group">
+                                <label for="contactName" class="pace-label">Full Name</label>
+                                <input type="text" id="contactName" class="pace-input" placeholder="Enter your full name" required>
+                            </div>
+                            
+                            <div class="pace-form-group">
+                                <label for="contactEmail" class="pace-label">Email Address</label>
+                                <input type="email" id="contactEmail" class="pace-input" placeholder="Enter your email" required>
+                            </div>
+                            
+                            <div class="pace-form-group">
+                                <label for="contactMessage" class="pace-label">Message</label>
+                                <textarea id="contactMessage" class="pace-input pace-textarea" placeholder="Your message here..." rows="4" required></textarea>
+                            </div>
+                            
+                            <div class="pace-form-actions">
+                                <button type="submit" class="pace-button pace-button-primary">
+                                    <i class="fas fa-paper-plane"></i>
+                                    Send Message
+                                </button>
+                                <button type="reset" class="pace-button pace-button-secondary">
+                                    <i class="fas fa-undo"></i>
+                                    Reset Form
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                
+                <div class="pace-card">
+                    <div class="pace-card-content">
+                        <h4 class="pace-heading-4">Advanced Form Controls</h4>
+                        <form class="pace-form">
+                            <div class="pace-form-group">
+                                <label for="selectExample" class="pace-label">Department</label>
+                                <select id="selectExample" class="pace-input">
+                                    <option value="">Select a department</option>
+                                    <option value="engineering">Engineering</option>
+                                    <option value="sales">Sales</option>
+                                    <option value="support">Support</option>
+                                </select>
+                            </div>
+                            
+                            <div class="pace-form-group">
+                                <fieldset class="pace-fieldset">
+                                    <legend class="pace-legend">Notification Preferences</legend>
+                                    <div class="pace-checkbox-group">
+                                        <label class="pace-checkbox-label">
+                                            <input type="checkbox" class="pace-checkbox" checked>
+                                            <span class="pace-checkbox-text">Email notifications</span>
+                                        </label>
+                                        <label class="pace-checkbox-label">
+                                            <input type="checkbox" class="pace-checkbox">
+                                            <span class="pace-checkbox-text">SMS notifications</span>
+                                        </label>
+                                        <label class="pace-checkbox-label">
+                                            <input type="checkbox" class="pace-checkbox" checked>
+                                            <span class="pace-checkbox-text">In-app notifications</span>
+                                        </label>
+                                    </div>
+                                </fieldset>
+                            </div>
+                            
+                            <div class="pace-form-group">
+                                <fieldset class="pace-fieldset">
+                                    <legend class="pace-legend">Account Type</legend>
+                                    <div class="pace-radio-group">
+                                        <label class="pace-radio-label">
+                                            <input type="radio" name="accountType" value="personal" class="pace-radio" checked>
+                                            <span class="pace-radio-text">Personal</span>
+                                        </label>
+                                        <label class="pace-radio-label">
+                                            <input type="radio" name="accountType" value="business" class="pace-radio">
+                                            <span class="pace-radio-text">Business</span>
+                                        </label>
+                                    </div>
+                                </fieldset>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Form Code Example -->
+            <div class="pace-code-example">
+                <h4 class="pace-heading-4">Form HTML Structure</h4>
+                <pre class="pace-pre"><code class="pace-code">&lt;form class="pace-form"&gt;
+  &lt;div class="pace-form-group"&gt;
+    &lt;label for="email" class="pace-label"&gt;Email Address&lt;/label&gt;
+    &lt;input type="email" id="email" class="pace-input" placeholder="Enter your email"&gt;
+  &lt;/div&gt;
+  
+  &lt;div class="pace-form-group"&gt;
+    &lt;label for="message" class="pace-label"&gt;Message&lt;/label&gt;
+    &lt;textarea id="message" class="pace-input pace-textarea" rows="4"&gt;&lt;/textarea&gt;
+  &lt;/div&gt;
+  
+  &lt;div class="pace-form-actions"&gt;
+    &lt;button type="submit" class="pace-button pace-button-primary"&gt;Submit&lt;/button&gt;
+    &lt;button type="reset" class="pace-button pace-button-secondary"&gt;Reset&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/form&gt;</code></pre>
+                <button class="pace-button pace-button-outline pace-button-copy" onclick="copyToClipboard(this.previousElementSibling.textContent)">
+                    <i class="fas fa-copy"></i>
+                    Copy Code
+                </button>
+            </div>
+        </div>
+
+        <!-- Integration Examples -->
+        <div class="pace-section">
+            <h2 class="pace-section-title">Integration Examples</h2>
+            <p class="pace-section-description">
+                Complete implementation examples for common integration scenarios.
+            </p>
+            
+            <div class="pace-grid pace-grid-2">
+                <div class="pace-card">
+                    <div class="pace-card-content">
+                        <h4 class="pace-heading-4">HTML Document Setup</h4>
+                        <pre class="pace-pre"><code class="pace-code">&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;!-- Pace Style Guide CSS --&gt;
+  &lt;link rel="stylesheet" href="pace-style-guide.css"&gt;
+  &lt;!-- FontAwesome for Icons --&gt;
+  &lt;link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"&gt;
+&lt;/head&gt;
+&lt;body class="pace-base"&gt;
+  &lt;div class="pace-container"&gt;
+    &lt;!-- Your content here --&gt;
+  &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                        <button class="pace-button pace-button-outline pace-button-copy" onclick="copyToClipboard(this.previousElementSibling.textContent)">
+                            <i class="fas fa-copy"></i>
+                            Copy Code
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="pace-card">
+                    <div class="pace-card-content">
+                        <h4 class="pace-heading-4">Authentication Integration</h4>
+                        <pre class="pace-pre"><code class="pace-code">&lt;!-- MSAL.js for Microsoft 365 --&gt;
+&lt;script src="https://alcdn.msauth.net/browser/2.35.0/js/msal-browser.min.js"&gt;&lt;/script&gt;
+
+&lt;!-- Pace Authentication Scripts --&gt;
+&lt;script src="./scripts/config.js"&gt;&lt;/script&gt;
+&lt;script src="./scripts/utils.js"&gt;&lt;/script&gt;
+&lt;script src="./scripts/auth.js"&gt;&lt;/script&gt;
+
+&lt;script&gt;
+// Initialize authentication
+document.addEventListener('DOMContentLoaded', async function() {
+  const auth = getAuth();
+  
+  // Set up authentication state listener
+  auth.onAuthStateChanged((isAuthenticated, account) =&gt; {
+    // Update UI based on auth state
+  });
+});
+&lt;/script&gt;</code></pre>
+                        <button class="pace-button pace-button-outline pace-button-copy" onclick="copyToClipboard(this.previousElementSibling.textContent)">
+                            <i class="fas fa-copy"></i>
+                            Copy Code
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Interactive Examples -->
+        <div class="pace-section">
+            <h2 class="pace-section-title">Interactive Examples</h2>
+            <p class="pace-section-description">
+                Test interactive components and notification system.
+            </p>
+            
+            <div class="pace-grid pace-grid-4">
+                <button class="pace-button pace-button-primary" onclick="demoNotification('success')">
+                    <i class="fas fa-check"></i>
+                    Success Notification
+                </button>
+                <button class="pace-button pace-button-secondary" onclick="demoNotification('error')">
+                    <i class="fas fa-times"></i>
+                    Error Notification
+                </button>
+                <button class="pace-button pace-button-outline" onclick="demoNotification('warning')">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    Warning Notification
+                </button>
+                <button class="pace-button pace-button-microsoft" onclick="demoNotification('info')">
+                    <i class="fas fa-info-circle"></i>
+                    Info Notification
+                </button>
+            </div>
+        </div>
+
+        <!-- Back to Top -->
+        <div class="pace-section">
+            <div class="pace-card">
+                <div class="pace-card-content pace-text-center">
+                    <h4 class="pace-heading-4">Explore More</h4>
+                    <p class="pace-text-body">Continue exploring the style guide or return to the landing page.</p>
+                    <div class="pace-button-group">
+                        <button class="pace-button pace-button-outline" onclick="showLanding()">
+                            <i class="fas fa-home"></i>
+                            Back to Landing
+                        </button>
+                        <button class="pace-button pace-button-primary" onclick="scrollToTop()">
+                            <i class="fas fa-arrow-up"></i>
+                            Back to Top
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="pace-index-footer">
+        <div class="pace-container">
+            <p class="pace-text-small pace-index-footer-text">
+                © 2025 Pace Applied Solutions. All rights reserved.
+            </p>
+            <div class="pace-index-footer-actions">
+                <a href="https://github.com/Pace-Applied-Solutions/PacePublicShare" class="pace-button pace-button-outline" target="_blank" rel="noopener">
+                    <i class="fab fa-github"></i>
+                    View on GitHub
+                </a>
+                <a href="./AUTHENTICATION_SETUP.md" class="pace-button pace-button-outline" target="_blank" rel="noopener">
+                    <i class="fas fa-book"></i>
+                    Setup Guide
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- All JavaScript functionality is handled by the app.js file -->
+</body>
+</html>

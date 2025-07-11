@@ -1,0 +1,49 @@
+# Pace Applied Solutions - Git Ignore Configuration
+# This file ensures sensitive configuration and local files are not committed to the public repository
+
+# Authentication & Security
+config.local.js
+.env
+.env.local
+.env.production
+*.key
+*.pem
+*.p12
+secrets.json
+
+# Development & Build
+node_modules/
+.vscode/settings.json
+.vscode/launch.json
+*.log
+*.tmp
+dist/
+build/
+
+# Operating System
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+*.swo
+*~
+
+# IDE/Editor
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Temporary & Cache
+temp/
+tmp/
+.cache/
+.parcel-cache/
+
+# Local configuration overrides
+config.override.js
+local-settings.json
+
+# Microsoft/Azure specific
+.azure/
+azd-env/
