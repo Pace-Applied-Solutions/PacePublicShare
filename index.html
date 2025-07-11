@@ -352,41 +352,149 @@
         <div class="pace-section">
             <h2 class="pace-section-title">Brand Assets</h2>
             <p class="pace-section-description">
-                Complete logo collection with different variants for various use cases.
+                Complete logo collection with proper contrast examples for both light and dark themes. Each logo variant is demonstrated against appropriate backgrounds to ensure optimal visibility and accessibility.
             </p>
             
-            <div class="pace-logo-showcase">
-                <div class="pace-logo-example pace-light">
-                    <img src="./assets/logo/Pace-logo-orange.png" alt="Pace Logo Orange">
-                    <h5>Primary Orange Logo</h5>
-                    <p>For light backgrounds and primary branding</p>
-                </div>
-                <div class="pace-logo-example pace-light">
-                    <img src="./assets/logo/Pace-logo-blue.png" alt="Pace Logo Blue">
-                    <h5>Professional Blue Logo</h5>
-                    <p>For professional documents and secondary branding</p>
-                </div>
-                <div class="pace-logo-example pace-dark">
-                    <img src="./assets/logo/Pace-logo-white.png" alt="Pace Logo White">
-                    <h5>White Logo</h5>
-                    <p>For dark backgrounds and overlay contexts</p>
+            <!-- Primary Orange Logo Examples -->
+            <div class="pace-logo-variant-section">
+                <h3 class="pace-heading-3">Primary Orange Logo</h3>
+                <p class="pace-text-body">Main brand logo optimized for light backgrounds and primary branding contexts.</p>
+                <div class="pace-logo-showcase">
+                    <div class="pace-logo-example pace-light">
+                        <img src="./assets/logo/Pace-logo-orange.png" alt="Pace Logo Orange on Light Background">
+                        <h5>Light Background</h5>
+                        <p>Optimal contrast on light surfaces</p>
+                    </div>
+                    <div class="pace-logo-example pace-dark">
+                        <img src="./assets/logo/Pace-logo-orange.png" alt="Pace Logo Orange on Dark Background">
+                        <h5>Dark Background</h5>
+                        <p>Reduced visibility - use white logo instead</p>
+                    </div>
                 </div>
             </div>
+
+            <!-- Professional Blue Logo Examples -->
+            <div class="pace-logo-variant-section">
+                <h3 class="pace-heading-3">Professional Blue Logo</h3>
+                <p class="pace-text-body">Alternative logo for professional documents and secondary branding contexts.</p>
+                <div class="pace-logo-showcase">
+                    <div class="pace-logo-example pace-light">
+                        <img src="./assets/logo/Pace-logo-blue.png" alt="Pace Logo Blue on Light Background">
+                        <h5>Light Background</h5>
+                        <p>Professional appearance on light surfaces</p>
+                    </div>
+                    <div class="pace-logo-example pace-dark">
+                        <img src="./assets/logo/Pace-logo-blue.png" alt="Pace Logo Blue on Dark Background">
+                        <h5>Dark Background</h5>
+                        <p>Reduced visibility - use white logo instead</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- White Logo Examples -->
+            <div class="pace-logo-variant-section">
+                <h3 class="pace-heading-3">White Logo</h3>
+                <p class="pace-text-body">Reverse logo specifically designed for dark backgrounds and overlay contexts.</p>
+                <div class="pace-logo-showcase">
+                    <div class="pace-logo-example pace-light">
+                        <img src="./assets/logo/Pace-logo-white.png" alt="Pace Logo White on Light Background">
+                        <h5>Light Background</h5>
+                        <p>Poor contrast - not recommended</p>
+                    </div>
+                    <div class="pace-logo-example pace-dark">
+                        <img src="./assets/logo/Pace-logo-white.png" alt="Pace Logo White on Dark Background">
+                        <h5>Dark Background</h5>
+                        <p>Optimal contrast on dark surfaces</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Usage Guidelines -->
+            <div class="pace-logo-usage-guidelines">
+                <h3 class="pace-heading-3">Usage Guidelines</h3>
+                <div class="pace-grid pace-grid-2">
+                    <div class="pace-card">
+                        <div class="pace-card-content">
+                            <h4 class="pace-heading-4">Light Mode Recommended</h4>
+                            <div class="pace-logo-recommendation">
+                                <img src="./assets/logo/Pace-logo-orange.png" alt="Primary Orange Logo" class="pace-logo-small">
+                                <div>
+                                    <p class="pace-text-body"><strong>Primary:</strong> Orange Logo</p>
+                                    <p class="pace-text-small">Use on light backgrounds, white cards, and primary branding</p>
+                                </div>
+                            </div>
+                            <div class="pace-logo-recommendation">
+                                <img src="./assets/logo/Pace-logo-blue.png" alt="Professional Blue Logo" class="pace-logo-small">
+                                <div>
+                                    <p class="pace-text-body"><strong>Secondary:</strong> Blue Logo</p>
+                                    <p class="pace-text-small">Use for professional documents and alternative branding</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pace-card">
+                        <div class="pace-card-content">
+                            <h4 class="pace-heading-4">Dark Mode Recommended</h4>
+                            <div class="pace-logo-recommendation">
+                                <img src="./assets/logo/Pace-logo-white.png" alt="White Logo" class="pace-logo-small">
+                                <div>
+                                    <p class="pace-text-body"><strong>Primary:</strong> White Logo</p>
+                                    <p class="pace-text-small">Use on dark backgrounds, overlays, and dark theme contexts</p>
+                                </div>
+                            </div>
+                            <div class="pace-logo-recommendation pace-disabled">
+                                <img src="./assets/logo/Pace-logo-orange.png" alt="Orange Logo (Not Recommended)" class="pace-logo-small">
+                                <div>
+                                    <p class="pace-text-body"><strong>Avoid:</strong> Orange/Blue on Dark</p>
+                                    <p class="pace-text-small">Poor contrast - use white logo instead</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
             
-            <!-- Logo Usage Code -->
+            <!-- Logo Implementation -->
             <div class="pace-code-example">
                 <h4 class="pace-heading-4">Logo Implementation</h4>
-                <pre class="pace-pre"><code class="pace-code">&lt;!-- Primary Orange Logo --&gt;
+                <pre class="pace-pre"><code class="pace-code"><!-- Light Mode Recommended -->
+&lt;!-- Primary Orange Logo --&gt;
 &lt;img src="https://raw.githubusercontent.com/Pace-Applied-Solutions/PacePublicShare/main/assets/logo/Pace-logo-orange.png" 
-     alt="Pace Applied Solutions"&gt;
+     alt="Pace Applied Solutions" class="pace-logo"&gt;
 
 &lt;!-- Professional Blue Logo --&gt;
 &lt;img src="https://raw.githubusercontent.com/Pace-Applied-Solutions/PacePublicShare/main/assets/logo/Pace-logo-blue.png" 
-     alt="Pace Applied Solutions"&gt;
+     alt="Pace Applied Solutions" class="pace-logo"&gt;
 
+<!-- Dark Mode Recommended -->
 &lt;!-- White Logo (for dark backgrounds) --&gt;
 &lt;img src="https://raw.githubusercontent.com/Pace-Applied-Solutions/PacePublicShare/main/assets/logo/Pace-logo-white.png" 
-     alt="Pace Applied Solutions"&gt;</code></pre>
+     alt="Pace Applied Solutions" class="pace-logo"&gt;
+
+/* CSS for responsive logo sizing */
+.pace-logo {
+  max-width: 200px;
+  height: auto;
+  display: block;
+}
+
+/* Theme-aware logo implementation */
+.pace-logo-primary {
+  display: block;
+}
+
+[data-theme="dark"] .pace-logo-primary {
+  display: none;
+}
+
+.pace-logo-dark {
+  display: none;
+}
+
+[data-theme="dark"] .pace-logo-dark {
+  display: block;
+}</code></pre>
                 <button class="pace-button pace-button-outline pace-button-copy" onclick="copyToClipboard(this.previousElementSibling.textContent)">
                     <i class="fas fa-copy"></i>
                     Copy Code

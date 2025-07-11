@@ -49,22 +49,28 @@ The style guide is implemented as a modular CSS framework with the `pace-` names
 
 #### Primary Logo (Orange)
 - **File**: `Pace-logo-orange.png`
-- **Usage**: Primary brand element, light backgrounds
+- **Usage**: Primary brand element, light backgrounds and primary branding contexts
 - **Color**: #EB9110 (PACE Orange)
 - **Minimum Size**: 120px width
 - **Format**: PNG with transparent background
+- **Optimal Contrast**: Light backgrounds (white, light gray)
+- **Poor Contrast**: Dark backgrounds (use white logo instead)
 
 #### Professional Logo (Blue)
 - **File**: `Pace-logo-blue.png`
-- **Usage**: Professional documents, secondary branding
+- **Usage**: Professional documents, secondary branding contexts
 - **Color**: Custom blue variant
 - **Context**: Formal presentations, business communications
+- **Optimal Contrast**: Light backgrounds (white, light gray)
+- **Poor Contrast**: Dark backgrounds (use white logo instead)
 
 #### Reverse Logo (White)
 - **File**: `Pace-logo-white.png`
-- **Usage**: Dark backgrounds, overlay contexts
+- **Usage**: Dark backgrounds, overlay contexts, and dark theme applications
 - **Color**: White (#FFFFFF)
 - **Applications**: Hero sections, footer areas, dark themes
+- **Optimal Contrast**: Dark backgrounds (dark gray, black, colored backgrounds)
+- **Poor Contrast**: Light backgrounds (not recommended)
 
 ### Icon System
 
@@ -87,6 +93,29 @@ Complete favicon implementation for all platforms:
 <link rel="icon" type="image/png" sizes="192x192" href="./assets/logo/android-chrome-192x192.png">
 <link rel="icon" type="image/png" sizes="512x512" href="./assets/logo/android-chrome-512x512.png">
 ```
+
+#### Logo Usage Guidelines
+
+**Light Mode Applications:**
+```html
+<!-- Primary Orange Logo - Best for light backgrounds -->
+<img src="./assets/logo/Pace-logo-orange.png" alt="Pace Applied Solutions" class="pace-logo">
+
+<!-- Professional Blue Logo - Alternative for light backgrounds -->
+<img src="./assets/logo/Pace-logo-blue.png" alt="Pace Applied Solutions" class="pace-logo">
+```
+
+**Dark Mode Applications:**
+```html
+<!-- White Logo - Best for dark backgrounds -->
+<img src="./assets/logo/Pace-logo-white.png" alt="Pace Applied Solutions" class="pace-logo">
+```
+
+**Contrast Guidelines:**
+- **High Contrast**: Orange/Blue logos on white or light backgrounds
+- **High Contrast**: White logo on dark backgrounds
+- **Poor Contrast**: Orange/Blue logos on dark backgrounds (avoid)
+- **Poor Contrast**: White logo on light backgrounds (avoid)
 
 ### CDN Access
 All assets are available via GitHub CDN for external projects:
