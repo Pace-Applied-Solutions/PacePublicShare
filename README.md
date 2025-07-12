@@ -54,6 +54,24 @@ This project serves as a living style guide and reference implementation for Pac
 
 The application works immediately in demo mode, providing full access to all components and examples without requiring authentication setup.
 
+### Test Deployment Auto-Demo
+
+When the application is accessed via Azure Static Web Apps test deployment URLs (matching the pattern `https://white-mud-0cad69810-*.centralus.2.azurestaticapps.net/`), the application automatically enables demo mode with a simulated user profile. This allows developers and testers to:
+
+- **View authenticated layouts**: See how the application looks with a signed-in user
+- **Test user interface components**: Interact with profile displays, user menus, and protected features
+- **Validate design changes**: Review visual changes in test deployments without requiring actual authentication
+- **No configuration required**: Demo authentication happens automatically on test URLs
+
+The demo user profile includes:
+- **Name**: Alex Johnson
+- **Email**: alex.johnson@paceappliedsolutions.com
+- **Job Title**: Senior Developer
+- **Profile Picture**: Generated avatar with initials
+- **Automatic sign-in**: User is automatically signed in when the page loads
+
+**Note**: This demo mode is only active on test deployment URLs. Production and primary URLs will use normal Microsoft 365 authentication.
+
 ## 🔐 Authentication Setup
 
 For production use with Microsoft 365 authentication:
