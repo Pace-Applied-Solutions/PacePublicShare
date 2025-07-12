@@ -173,10 +173,11 @@ body[data-theme="dark"] {
 /* Site Title - Agency FB font, used sparingly (once per page or content section) */
 .pace-site-title {
     font-family: var(--pace-font-family-title);
-    font-size: var(--pace-font-size-3xl);
+    font-size: 2rem;
     font-weight: 400;
     margin: 0 0 var(--pace-spacing-md) 0;
     color: var(--pace-text-color);
+    text-transform: uppercase;
 }
 
 /* Primary Headings - Bahnschrift Light Condensed */
@@ -551,6 +552,7 @@ body[data-theme="dark"] {
     font-size: var(--pace-font-size-2xl);
     font-weight: 400;
     margin-bottom: var(--pace-spacing-md);
+    text-transform: uppercase;
 }
 
 .pace-brand-description {
@@ -1053,9 +1055,10 @@ body[data-theme="dark"] {
 .pace-app-header-title {
     font-family: var(--pace-font-family-title);
     margin: 0;
-    font-size: 1rem;
+    font-size: 1.35rem;
     font-weight: 400;
     color: #fff;
+    text-transform: uppercase;
 }
 
 .pace-app-header-right {
@@ -1072,7 +1075,7 @@ body[data-theme="dark"] {
 /* Responsive app header */
 @media (max-width: 767px) {
     .pace-app-header-title {
-        font-size: 0.75rem;
+        font-size: 0.9rem;
     }
     
     .pace-app-header-logo {
@@ -1403,6 +1406,7 @@ body[data-theme="dark"] {
     font-size: var(--pace-font-size-2xl);
     font-weight: 400;
     margin-bottom: var(--pace-spacing-md);
+    text-transform: uppercase;
 }
 
 .pace-brand-description {
