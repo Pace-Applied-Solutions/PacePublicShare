@@ -1917,31 +1917,64 @@ body[data-theme="dark"] {
 }
 
 /* Dark theme adjustments for navigation */
-[data-theme="dark"] .pace-nav {
+/* Header navigation should maintain light theme styling on orange background */
+.pace-app-header [data-theme="dark"] .pace-nav-link,
+[data-theme="dark"] .pace-app-header .pace-nav-link {
+    color: #ffffff;
+}
+
+.pace-app-header [data-theme="dark"] .pace-nav-link:hover,
+[data-theme="dark"] .pace-app-header .pace-nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+}
+
+.pace-app-header [data-theme="dark"] .pace-mobile-menu-toggle,
+[data-theme="dark"] .pace-app-header .pace-mobile-menu-toggle {
+    color: #ffffff;
+}
+
+.pace-app-header [data-theme="dark"] .pace-mobile-menu-toggle:hover,
+[data-theme="dark"] .pace-app-header .pace-mobile-menu-toggle:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Dark theme for standalone navigation (not in header) */
+[data-theme="dark"] .pace-nav:not(.pace-app-header .pace-nav) {
     background-color: var(--pace-background-color);
 }
 
-[data-theme="dark"] .pace-nav-link {
+[data-theme="dark"] .pace-nav-link:not(.pace-app-header .pace-nav-link) {
     color: var(--pace-text-color);
 }
 
-[data-theme="dark"] .pace-nav-link:hover {
+[data-theme="dark"] .pace-nav-link:hover:not(.pace-app-header .pace-nav-link:hover) {
     background-color: rgba(255, 255, 255, 0.05);
     color: var(--pace-text-color);
 }
 
-[data-theme="dark"] .pace-mobile-menu-toggle {
+[data-theme="dark"] .pace-mobile-menu-toggle:not(.pace-app-header .pace-mobile-menu-toggle) {
     color: var(--pace-text-color);
 }
 
-[data-theme="dark"] .pace-mobile-menu-toggle:hover {
+[data-theme="dark"] .pace-mobile-menu-toggle:hover:not(.pace-app-header .pace-mobile-menu-toggle:hover) {
     background-color: rgba(255, 255, 255, 0.05);
 }
 
+/* Mobile navigation dropdown should use dark theme */
 @media (max-width: 768px) {
     [data-theme="dark"] .pace-nav {
         background-color: var(--pace-card-background);
         border-top: 1px solid var(--pace-border-color);
+    }
+    
+    [data-theme="dark"] .pace-nav-link {
+        color: var(--pace-text-color);
+    }
+    
+    [data-theme="dark"] .pace-nav-link:hover {
+        background-color: rgba(255, 255, 255, 0.05);
+        color: var(--pace-text-color);
     }
 }
 
