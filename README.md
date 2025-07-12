@@ -248,10 +248,11 @@ class CustomPaceApp extends PaceApp {
 - **Professional Presentation**: Clean, branded design with proper typography and code highlighting
 
 ### Font Compatibility
+- **Local Font Files**: Primary brand fonts (Agency FB, Bahnschrift) hosted locally in assets/fonts/ for optimal performance
 - **Cross-Platform Support**: Enhanced font stacks ensure consistent rendering across Windows, iOS, Android, and other platforms
-- **Web Font Integration**: Google Fonts integration provides Agency FB and Bahnschrift alternatives
+- **Web Font Fallbacks**: Google Fonts integration provides cross-platform alternatives when local fonts aren't available
 - **iOS Optimization**: Specific fallbacks for iOS devices including Helvetica Neue Condensed and Avenir Next Condensed
-- **Performance Optimized**: Font loading strategy with `display=swap` for optimal performance
+- **Performance Optimized**: Font loading strategy with `font-display: swap` for optimal performance
 - **Graceful Fallbacks**: Multiple fallback layers ensure readable text even when preferred fonts aren't available
 
 ## 🔧 Configuration
