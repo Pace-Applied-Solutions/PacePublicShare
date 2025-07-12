@@ -8,6 +8,18 @@
  */
 
 /* ================================================
+   Font Loading and Cross-Platform Compatibility
+   ================================================ */
+
+/* Import Google Fonts for better cross-platform compatibility */
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;500;600&family=Oswald:wght@300;400;500;600&display=swap');
+
+/* Web Font Fallbacks for iOS Compatibility
+ * These fonts provide similar characteristics to Agency FB and Bahnschrift Light Condensed
+ * but are web fonts that work consistently across all platforms including iOS
+ */
+
+/* ================================================
    CSS Custom Properties (CSS Variables)
    ================================================ */
 :root {
@@ -22,10 +34,12 @@
     --pace-text-light: #666;
     --pace-border-color: #e5e5e5;
     --pace-shadow-color: rgba(0,0,0,0.08);
-    /* Font Families */
+    /* Font Families - Enhanced for iOS Compatibility */
     --pace-font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
-    --pace-font-family-heading: 'Bahnschrift Light Condensed', 'Bahnschrift Light', 'Bahnschrift', 'Arial Narrow', 'Helvetica Neue', Arial, sans-serif;
-    --pace-font-family-title: 'Agency FB', 'Arial Narrow', 'Helvetica Neue', Arial, sans-serif;
+    /* Primary headings with web font fallbacks for iOS */
+    --pace-font-family-heading: 'Bahnschrift Light Condensed', 'Bahnschrift Light', 'Bahnschrift', 'Barlow Condensed', 'Arial Narrow', 'Helvetica Neue Condensed', 'Avenir Next Condensed', 'Trebuchet MS', 'Helvetica Neue', Arial, sans-serif;
+    /* Title font with web font fallbacks for iOS */
+    --pace-font-family-title: 'Agency FB', 'Oswald', 'Arial Narrow', 'Helvetica Neue Condensed', 'Avenir Next Condensed', 'Impact', 'Helvetica Neue', Arial, sans-serif;
     
     /* Font Sizes */
     --pace-font-size-xs: 0.75rem;    /* 12px */
@@ -2046,3 +2060,34 @@ body[data-theme="dark"] {
         max-width: none;
     }
 }
+
+/* ================================================
+   Font Loading and Cross-Platform Compatibility Guide
+   ================================================ */
+/* 
+ * FONT COMPATIBILITY NOTES:
+ * 
+ * 1. Agency FB and Bahnschrift Light Condensed are Windows system fonts
+ *    that are NOT available on iOS devices by default
+ * 
+ * 2. This CSS includes web font fallbacks via Google Fonts:
+ *    - Oswald: Similar to Agency FB for titles
+ *    - Barlow Condensed: Similar to Bahnschrift Light Condensed for headings
+ * 
+ * 3. iOS-specific fallbacks in the font stack:
+ *    - Helvetica Neue Condensed: Built-in iOS condensed font
+ *    - Avenir Next Condensed: iOS system font alternative
+ *    - Impact: Bold title font available on iOS
+ * 
+ * 4. Font loading is handled by @import at the top of this file
+ *    for optimal performance and cross-platform compatibility
+ * 
+ * 5. If Google Fonts are blocked, the CSS gracefully falls back
+ *    to system fonts that provide similar visual characteristics
+ * 
+ * TROUBLESHOOTING:
+ * - If custom fonts don't load, check network connectivity
+ * - Verify Google Fonts CDN access in your environment
+ * - Test on iOS devices to ensure proper fallback rendering
+ * - Use browser developer tools to inspect computed font-family values
+ */
