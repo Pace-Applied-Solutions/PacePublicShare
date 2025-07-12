@@ -208,11 +208,32 @@ class PaceApp {
             viewExamplesBtn.addEventListener('click', () => this.handleViewExamples());
         }
 
+        // Mobile menu toggle
+        const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+        if (mobileMenuToggle) {
+            mobileMenuToggle.addEventListener('click', () => this.toggleMobileMenu());
+        }
+
+        // Navigation links
+        const navViewExamples = document.getElementById('navViewExamples');
+        if (navViewExamples) {
+            navViewExamples.addEventListener('click', () => {
+                this.showExamples();
+                this.closeMobileMenu();
+            });
+        }
+
         // Global keyboard shortcuts
         document.addEventListener('keydown', (e) => this.handleKeyboardShortcuts(e));
         
         // Smooth scrolling for internal links
         document.addEventListener('click', (e) => this.handleInternalLinks(e));
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => this.handleOutsideClick(e));
+
+        // Close mobile menu on window resize
+        window.addEventListener('resize', () => this.handleWindowResize());
     }
 
     /**
@@ -328,6 +349,7 @@ class PaceApp {
         const signInBtn = document.getElementById('signInBtn');
         const userProfile = document.getElementById('userProfile');
         const viewExamplesBtn = document.getElementById('viewExamplesBtn');
+        const navViewExamples = document.getElementById('navViewExamples');
         
         if (authenticated && account) {
             // User is authenticated - show user profile
@@ -339,6 +361,10 @@ class PaceApp {
             if (viewExamplesBtn) {
                 viewExamplesBtn.innerHTML = '<i class="fas fa-play"></i> View Examples';
                 viewExamplesBtn.onclick = () => this.showExamples();
+            }
+            if (navViewExamples) {
+                navViewExamples.innerHTML = '<i class="fas fa-play"></i><span>Interactive Examples</span>';
+                navViewExamples.onclick = () => this.showExamples();
             }
             
             // Show examples and welcome message
@@ -360,6 +386,10 @@ class PaceApp {
                     viewExamplesBtn.innerHTML = '<i class="fas fa-play"></i> View Examples';
                     viewExamplesBtn.onclick = () => this.showExamples();
                 }
+            }
+            if (navViewExamples) {
+                navViewExamples.innerHTML = '<i class="fas fa-play"></i><span>Interactive Examples</span>';
+                navViewExamples.onclick = () => this.showExamples();
             }
             
             // Always show examples, regardless of authentication state
@@ -549,6 +579,115 @@ class PaceApp {
                 configNotice.classList.add('pace-notification-error');
                 configNotice.querySelector('strong').textContent = 'Configuration Error';
                 configNotice.querySelector('p').textContent = 'Authentication configuration is invalid. Please check your Azure AD settings.';
+            }
+        }
+    }
+
+    /**
+     * Toggle mobile navigation menu
+     */
+    toggleMobileMenu() {
+        const nav = document.getElementById('mainNav');
+        const toggleBtn = document.getElementById('mobileMenuToggle');
+        
+        if (nav && toggleBtn) {
+            const isOpen = nav.classList.contains('pace-nav-open');
+            
+            if (isOpen) {
+                this.closeMobileMenu();
+            } else {
+                this.openMobileMenu();
+            }
+        }
+    }
+
+    /**
+     * Open mobile navigation menu
+     */
+    openMobileMenu() {
+        const nav = document.getElementById('mainNav');
+        const toggleBtn = document.getElementById('mobileMenuToggle');
+        
+        if (nav && toggleBtn) {
+            nav.classList.add('pace-nav-open');
+            toggleBtn.setAttribute('aria-expanded', 'true');
+            toggleBtn.setAttribute('aria-label', 'Close navigation menu');
+            
+            // Change icon to close
+            const icon = toggleBtn.querySelector('i');
+            if (icon) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            }
+        }
+    }
+
+    /**
+     * Close mobile navigation menu
+     */
+    closeMobileMenu() {
+        const nav = document.getElementById('mainNav');
+        const toggleBtn = document.getElementById('mobileMenuToggle');
+        
+        if (nav && toggleBtn) {
+            nav.classList.remove('pace-nav-open');
+            toggleBtn.setAttribute('aria-expanded', 'false');
+            toggleBtn.setAttribute('aria-label', 'Toggle navigation menu');
+            
+            // Change icon back to hamburger
+            const icon = toggleBtn.querySelector('i');
+            if (icon) {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        }
+    }
+
+    /**
+     * Handle clicks outside mobile menu
+     */
+    handleOutsideClick(e) {
+        const nav = document.getElementById('mainNav');
+        const toggleBtn = document.getElementById('mobileMenuToggle');
+        
+        if (nav && toggleBtn && nav.classList.contains('pace-nav-open')) {
+            // Check if click is outside the nav and toggle button
+            if (!nav.contains(e.target) && !toggleBtn.contains(e.target)) {
+                this.closeMobileMenu();
+            }
+        }
+    }
+
+    /**
+     * Handle window resize
+     */
+    handleWindowResize() {
+        // Close mobile menu when resizing to larger screens
+        if (window.innerWidth > 768) {
+            this.closeMobileMenu();
+        }
+    }
+
+    /**
+     * Handle keyboard shortcuts
+     */
+    handleKeyboardShortcuts(e) {
+        // Escape key to close mobile menu or return to landing
+        if (e.key === 'Escape') {
+            const nav = document.getElementById('mainNav');
+            if (nav && nav.classList.contains('pace-nav-open')) {
+                this.closeMobileMenu();
+            } else {
+                this.showLanding();
+            }
+        }
+        
+        // Ctrl/Cmd + K for quick copy (when focused on code blocks)
+        if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+            e.preventDefault();
+            const focusedElement = document.activeElement;
+            if (focusedElement && focusedElement.tagName === 'CODE') {
+                this.copyToClipboard(focusedElement.textContent);
             }
         }
     }

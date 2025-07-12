@@ -120,7 +120,37 @@
                     <img src="./assets/logo/Pace-logo-white.png" alt="Pace Applied Solutions" class="pace-app-header-logo">
                     <h1 class="pace-app-header-title">Public Assets & Style Guide</h1>
                 </div>
+                
+                <!-- Navigation Menu -->
+                <nav class="pace-nav" id="mainNav">
+                    <ul class="pace-nav-list">
+                        <li class="pace-nav-item">
+                            <button id="navViewExamples" class="pace-nav-link" onclick="showExamples()">
+                                <i class="fas fa-play"></i>
+                                <span>Interactive Examples</span>
+                            </button>
+                        </li>
+                        <li class="pace-nav-item">
+                            <a href="./docs/style-guide.html" class="pace-nav-link" target="_blank">
+                                <i class="fas fa-book"></i>
+                                <span>Style Guide</span>
+                            </a>
+                        </li>
+                        <li class="pace-nav-item">
+                            <a href="./assets/logo/" class="pace-nav-link" target="_blank">
+                                <i class="fas fa-images"></i>
+                                <span>Brand Assets</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+                
                 <div class="pace-app-header-right">
+                    <!-- Mobile Menu Toggle -->
+                    <button id="mobileMenuToggle" class="pace-mobile-menu-toggle" type="button" aria-label="Toggle navigation menu">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    
                     <!-- Theme Toggle -->
                     <div class="pace-theme-toggle">
                         <label class="pace-theme-toggle-label" for="themeToggle">Theme</label>
@@ -239,6 +269,106 @@
                             <i class="fas fa-copy"></i>
                             Copy Code
                         </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation Menu -->
+        <div class="pace-section">
+            <h2 class="pace-section-title">Navigation Menu</h2>
+            <p class="pace-section-description">
+                Responsive navigation menu with quick access to all style guide sections. Features collapsible mobile menu and adaptive icon/text display.
+            </p>
+            <div class="pace-grid pace-grid-2">
+                <div class="pace-card">
+                    <div class="pace-card-content">
+                        <h4 class="pace-heading-4">Desktop Navigation</h4>
+                        <p class="pace-text-body">Full navigation menu with icons and text labels on desktop screens (1025px+):</p>
+                        <pre class="pace-pre"><code class="pace-code">&lt;nav class="pace-nav"&gt;
+  &lt;ul class="pace-nav-list"&gt;
+    &lt;li class="pace-nav-item"&gt;
+      &lt;button class="pace-nav-link"&gt;
+        &lt;i class="fas fa-play"&gt;&lt;/i&gt;
+        &lt;span&gt;Interactive Examples&lt;/span&gt;
+      &lt;/button&gt;
+    &lt;/li&gt;
+    &lt;li class="pace-nav-item"&gt;
+      &lt;a href="./docs/style-guide.html" class="pace-nav-link"&gt;
+        &lt;i class="fas fa-book"&gt;&lt;/i&gt;
+        &lt;span&gt;Style Guide&lt;/span&gt;
+      &lt;/a&gt;
+    &lt;/li&gt;
+    &lt;li class="pace-nav-item"&gt;
+      &lt;a href="./assets/logo/" class="pace-nav-link"&gt;
+        &lt;i class="fas fa-images"&gt;&lt;/i&gt;
+        &lt;span&gt;Brand Assets&lt;/span&gt;
+      &lt;/a&gt;
+    &lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/nav&gt;</code></pre>
+                        <button class="pace-button pace-button-outline pace-button-copy" onclick="copyToClipboard(this.previousElementSibling.textContent)">
+                            <i class="fas fa-copy"></i>
+                            Copy Code
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="pace-card">
+                    <div class="pace-card-content">
+                        <h4 class="pace-heading-4">Mobile Navigation</h4>
+                        <p class="pace-text-body">Collapsible mobile menu with hamburger toggle for screens under 768px:</p>
+                        <pre class="pace-pre"><code class="pace-code">&lt;!-- Mobile Menu Toggle --&gt;
+&lt;button id="mobileMenuToggle" class="pace-mobile-menu-toggle"&gt;
+  &lt;i class="fas fa-bars"&gt;&lt;/i&gt;
+&lt;/button&gt;
+
+&lt;!-- Mobile Navigation Menu --&gt;
+&lt;nav class="pace-nav" id="mainNav"&gt;
+  &lt;ul class="pace-nav-list"&gt;
+    &lt;li class="pace-nav-item"&gt;
+      &lt;button class="pace-nav-link"&gt;
+        &lt;i class="fas fa-play"&gt;&lt;/i&gt;
+        &lt;span&gt;Interactive Examples&lt;/span&gt;
+      &lt;/button&gt;
+    &lt;/li&gt;
+    &lt;!-- Additional menu items --&gt;
+  &lt;/ul&gt;
+&lt;/nav&gt;</code></pre>
+                        <button class="pace-button pace-button-outline pace-button-copy" onclick="copyToClipboard(this.previousElementSibling.textContent)">
+                            <i class="fas fa-copy"></i>
+                            Copy Code
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation Features -->
+        <div class="pace-section">
+            <h2 class="pace-section-title">Navigation Features</h2>
+            <div class="pace-grid pace-grid-3">
+                <div class="pace-card">
+                    <div class="pace-card-content">
+                        <i class="fas fa-mobile-alt pace-index-feature-icon"></i>
+                        <h5 class="pace-index-feature-title">Mobile First</h5>
+                        <p class="pace-text-small">Collapsible hamburger menu on mobile devices with smooth animations</p>
+                    </div>
+                </div>
+                
+                <div class="pace-card">
+                    <div class="pace-card-content">
+                        <i class="fas fa-desktop pace-index-feature-icon"></i>
+                        <h5 class="pace-index-feature-title">Responsive</h5>
+                        <p class="pace-text-small">Adaptive display: icons only on tablets, full text on desktop</p>
+                    </div>
+                </div>
+                
+                <div class="pace-card">
+                    <div class="pace-card-content">
+                        <i class="fas fa-universal-access pace-index-feature-icon"></i>
+                        <h5 class="pace-index-feature-title">Accessible</h5>
+                        <p class="pace-text-small">Keyboard navigation, screen reader support, and proper ARIA labels</p>
                     </div>
                 </div>
             </div>
@@ -381,6 +511,143 @@
     &lt;/button&gt;
   &lt;/div&gt;
 &lt;/div&gt;</code></pre>
+                <button class="pace-button pace-button-outline pace-button-copy" onclick="copyToClipboard(this.previousElementSibling.textContent)">
+                    <i class="fas fa-copy"></i>
+                    Copy Code
+                </button>
+            </div>
+        </div>
+
+        <!-- Navigation Menu Components -->
+        <div class="pace-section">
+            <h2 class="pace-section-title">Navigation Menu</h2>
+            <p class="pace-section-description">
+                Responsive header navigation with quick access to all style guide sections. Features adaptive breakpoints and accessibility compliance.
+            </p>
+            
+            <div class="pace-grid pace-grid-2">
+                <div class="pace-card">
+                    <div class="pace-card-content">
+                        <h4 class="pace-heading-4">Implementation Guide</h4>
+                        <p class="pace-text-body">The navigation menu adapts to different screen sizes:</p>
+                        <ul class="pace-text-body" style="margin-left: 1.5rem;">
+                            <li><strong>Desktop (1025px+):</strong> Full navigation with icons and text</li>
+                            <li><strong>Tablet (769px-1024px):</strong> Icon-only navigation to save space</li>
+                            <li><strong>Mobile (≤768px):</strong> Collapsible hamburger menu</li>
+                        </ul>
+                        <p class="pace-text-body">Features include:</p>
+                        <ul class="pace-text-body" style="margin-left: 1.5rem;">
+                            <li>Smooth slide-in animations</li>
+                            <li>Keyboard navigation support</li>
+                            <li>Auto-close on outside clicks</li>
+                            <li>Screen reader compatibility</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="pace-card">
+                    <div class="pace-card-content">
+                        <h4 class="pace-heading-4">JavaScript Integration</h4>
+                        <p class="pace-text-body">Initialize the navigation menu functionality:</p>
+                        <pre class="pace-pre"><code class="pace-code">// Mobile menu toggle
+const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+const mainNav = document.getElementById('mainNav');
+
+mobileMenuToggle.addEventListener('click', function() {
+    const isOpen = mainNav.classList.contains('pace-nav-open');
+    
+    if (isOpen) {
+        mainNav.classList.remove('pace-nav-open');
+        this.setAttribute('aria-expanded', 'false');
+        this.querySelector('i').classList.remove('fa-times');
+        this.querySelector('i').classList.add('fa-bars');
+    } else {
+        mainNav.classList.add('pace-nav-open');
+        this.setAttribute('aria-expanded', 'true');
+        this.querySelector('i').classList.remove('fa-bars');
+        this.querySelector('i').classList.add('fa-times');
+    }
+});
+
+// Close menu on outside click
+document.addEventListener('click', function(e) {
+    if (!mainNav.contains(e.target) && !mobileMenuToggle.contains(e.target)) {
+        mainNav.classList.remove('pace-nav-open');
+        mobileMenuToggle.setAttribute('aria-expanded', 'false');
+    }
+});
+
+// Close menu on window resize
+window.addEventListener('resize', function() {
+    if (window.innerWidth > 768) {
+        mainNav.classList.remove('pace-nav-open');
+        mobileMenuToggle.setAttribute('aria-expanded', 'false');
+    }
+});</code></pre>
+                        <button class="pace-button pace-button-outline pace-button-copy" onclick="copyToClipboard(this.previousElementSibling.textContent)">
+                            <i class="fas fa-copy"></i>
+                            Copy Code
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Complete HTML Structure -->
+            <div class="pace-code-example">
+                <h4 class="pace-heading-4">Complete Navigation HTML</h4>
+                <pre class="pace-pre"><code class="pace-code">&lt;header class="pace-app-header"&gt;
+  &lt;div class="pace-container"&gt;
+    &lt;div class="pace-app-header-content"&gt;
+      &lt;div class="pace-app-header-left"&gt;
+        &lt;img src="./assets/logo/Pace-logo-white.png" alt="Pace Applied Solutions" class="pace-app-header-logo"&gt;
+        &lt;h1 class="pace-app-header-title"&gt;Public Assets &amp; Style Guide&lt;/h1&gt;
+      &lt;/div&gt;
+      
+      &lt;!-- Navigation Menu --&gt;
+      &lt;nav class="pace-nav" id="mainNav"&gt;
+        &lt;ul class="pace-nav-list"&gt;
+          &lt;li class="pace-nav-item"&gt;
+            &lt;button class="pace-nav-link"&gt;
+              &lt;i class="fas fa-play"&gt;&lt;/i&gt;
+              &lt;span&gt;Interactive Examples&lt;/span&gt;
+            &lt;/button&gt;
+          &lt;/li&gt;
+          &lt;li class="pace-nav-item"&gt;
+            &lt;a href="./docs/style-guide.html" class="pace-nav-link"&gt;
+              &lt;i class="fas fa-book"&gt;&lt;/i&gt;
+              &lt;span&gt;Style Guide&lt;/span&gt;
+            &lt;/a&gt;
+          &lt;/li&gt;
+          &lt;li class="pace-nav-item"&gt;
+            &lt;a href="./assets/logo/" class="pace-nav-link"&gt;
+              &lt;i class="fas fa-images"&gt;&lt;/i&gt;
+              &lt;span&gt;Brand Assets&lt;/span&gt;
+            &lt;/a&gt;
+          &lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/nav&gt;
+      
+      &lt;div class="pace-app-header-right"&gt;
+        &lt;!-- Mobile Menu Toggle --&gt;
+        &lt;button id="mobileMenuToggle" class="pace-mobile-menu-toggle" aria-label="Toggle navigation menu"&gt;
+          &lt;i class="fas fa-bars"&gt;&lt;/i&gt;
+        &lt;/button&gt;
+        
+        &lt;!-- Theme Toggle --&gt;
+        &lt;div class="pace-theme-toggle"&gt;
+          &lt;button class="pace-theme-toggle-switch"&gt;
+            &lt;span class="pace-theme-toggle-handle"&gt;
+              &lt;i class="fas fa-sun"&gt;&lt;/i&gt;
+            &lt;/span&gt;
+          &lt;/button&gt;
+        &lt;/div&gt;
+        
+        &lt;!-- Auth buttons --&gt;
+        &lt;button class="pace-button pace-button-primary"&gt;Sign In&lt;/button&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/header&gt;</code></pre>
                 <button class="pace-button pace-button-outline pace-button-copy" onclick="copyToClipboard(this.previousElementSibling.textContent)">
                     <i class="fas fa-copy"></i>
                     Copy Code
