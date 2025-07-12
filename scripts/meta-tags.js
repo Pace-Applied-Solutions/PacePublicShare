@@ -112,12 +112,6 @@ class MetaTagManager {
      */
     getEnvironmentType() {
         const hostname = window.location.hostname;
-        const allowedHostnames = [
-            'localhost',
-            '127.0.0.1',
-            'azurestaticapps.net',
-            'preview.azurestaticapps.net'
-        ];
         
         if (allowedHostnames.includes(hostname)) {
             if (hostname === 'localhost' || hostname === '127.0.0.1') {
