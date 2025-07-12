@@ -111,14 +111,16 @@ class MetaTagManager {
      * @returns {string} Environment type (production, preview, development)
      */
     getEnvironmentType() {
-        const hostname = window.location.hostname;
+        const hostname = new URL(window.location.href).hostname;
         
-        if (hostname.includes('localhost') || hostname.includes('127.0.0.1')) {
-            return 'development';
-        } else if (hostname.includes('-') && hostname.includes('azurestaticapps.net')) {
-            return 'preview';
-        } else if (hostname.includes('azurestaticapps.net')) {
-            return 'production';
+        if (allowedHostnames.includes(hostname)) {
+            if (hostname === 'localhost' || hostname === '127.0.0.1') {
+                return 'development';
+            } else if (hostname === 'preview.azurestaticapps.net') {
+                return 'preview';
+            } else if (hostname === 'azurestaticapps.net') {
+                return 'production';
+            }
         }
         
         return 'unknown';
