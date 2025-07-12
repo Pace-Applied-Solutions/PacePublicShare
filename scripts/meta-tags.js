@@ -111,7 +111,7 @@ class MetaTagManager {
      * @returns {string} Environment type (production, preview, development)
      */
     getEnvironmentType() {
-        const hostname = window.location.hostname;
+        const hostname = new URL(window.location.href).hostname;
         
         if (allowedHostnames.includes(hostname)) {
             if (hostname === 'localhost' || hostname === '127.0.0.1') {
