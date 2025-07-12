@@ -187,6 +187,7 @@ body[data-theme="dark"] {
     font-weight: 300;
     margin: 0 0 var(--pace-spacing-md) 0;
     color: var(--pace-text-color);
+    text-transform: uppercase;
 }
 
 /* Secondary Headings - Segoe UI */
