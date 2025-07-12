@@ -528,6 +528,116 @@ The system includes comprehensive fallbacks to ensure consistent appearance acro
 }
 ```
 
+### Navigation Components
+
+#### Header Navigation
+The header navigation component provides consistent navigation across all pages while maintaining theme coherence.
+
+```css
+.pace-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  margin: 0 1.5rem;
+}
+
+.pace-nav-list {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.pace-nav-link {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 0.375rem;
+  background: none;
+  border: none;
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.pace-nav-link:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+}
+```
+
+#### Dark Mode Navigation Behavior
+- **Header Navigation**: Always maintains light styling (white text) on the orange background, regardless of theme
+- **Mobile Navigation**: Adopts dark theme colors when displayed as a dropdown menu
+- **Accessibility**: Focus indicators adapt to theme for optimal visibility
+
+```css
+/* Header navigation maintains light styling in dark mode */
+.pace-app-header [data-theme="dark"] .pace-nav-link,
+[data-theme="dark"] .pace-app-header .pace-nav-link {
+  color: #ffffff;
+}
+
+/* Mobile navigation uses dark theme colors */
+@media (max-width: 768px) {
+  [data-theme="dark"] .pace-nav {
+    background-color: var(--pace-card-background);
+    border-top: 1px solid var(--pace-border-color);
+  }
+  
+  [data-theme="dark"] .pace-nav-link {
+    color: var(--pace-text-color);
+  }
+}
+```
+
+#### Mobile Navigation
+```css
+.pace-mobile-menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: #ffffff;
+  font-size: 1.125rem;
+  padding: 0.5rem;
+  border-radius: 0.375rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+@media (max-width: 768px) {
+  .pace-mobile-menu-toggle {
+    display: block;
+  }
+  
+  .pace-nav {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: var(--pace-primary-color);
+    transform: translateY(-100%);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+  }
+  
+  .pace-nav.pace-nav-open {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+  }
+}
+```
+
 ### Form Elements
 
 #### Input Fields
