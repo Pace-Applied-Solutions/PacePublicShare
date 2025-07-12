@@ -340,23 +340,56 @@ User theme preferences are automatically saved to `localStorage` and restored on
 
 ## Typography
 
-### Font Stack
+### Font Hierarchy
+
+The Pace design system uses a clear font hierarchy with specific fonts for different content types:
+
+#### Site Title Font - Agency FB
 ```css
-font-family: 'Aptos', 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
+font-family: 'Agency FB', 'Arial Narrow', 'Helvetica Neue', Arial, sans-serif;
 ```
+**Usage:** Use sparingly—once per page or content section for the main site title.
+
+#### Primary Headings Font - Bahnschrift Light Condensed
+```css
+font-family: 'Bahnschrift Light Condensed', 'Bahnschrift Light', 'Bahnschrift', 'Arial Narrow', 'Helvetica Neue', Arial, sans-serif;
+```
+**Usage:** For primary headings (H1) and main section titles.
+
+#### Secondary Headings & Body Text Font - Segoe UI
+```css
+font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+```
+**Usage:** For secondary headings (H2-H5) and all body text.
 
 ### Type Scale
 
-#### Headings
+#### Site Title
 ```css
-.pace-heading-1 {
+.pace-site-title {
+  font-family: 'Agency FB', 'Arial Narrow', 'Helvetica Neue', Arial, sans-serif;
   font-size: 1.75rem;    /* 28px */
-  font-weight: 600;
+  font-weight: 400;
   line-height: 1.2;
   margin-bottom: 1rem;
 }
+```
 
+#### Primary Headings
+```css
+.pace-heading-1 {
+  font-family: 'Bahnschrift Light Condensed', 'Bahnschrift Light', 'Bahnschrift', 'Arial Narrow', 'Helvetica Neue', Arial, sans-serif;
+  font-size: 1.75rem;    /* 28px */
+  font-weight: 300;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+```
+
+#### Secondary Headings
+```css
 .pace-heading-2 {
+  font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
   font-size: 1.5rem;     /* 24px */
   font-weight: 600;
   line-height: 1.25;
@@ -376,10 +409,24 @@ font-family: 'Aptos', 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', s
   line-height: 1.35;
   margin-bottom: 0.625rem;
 }
+
+.pace-heading-5 {
+  font-size: 1rem;       /* 16px */
+  font-weight: 600;
+  line-height: 1.4;
+  margin-bottom: 0.5rem;
+}
 ```
 
 #### Body Text
 ```css
+.pace-text-large {
+  font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+  font-size: 1.125rem;   /* 18px */
+  line-height: 1.55;
+  font-weight: 400;
+}
+
 .pace-text-body {
   font-size: 1rem;       /* 16px */
   line-height: 1.6;
@@ -392,18 +439,30 @@ font-family: 'Aptos', 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', s
   color: var(--pace-text-light);
 }
 
-.pace-text-large {
-  font-size: 1.125rem;   /* 18px */
-  line-height: 1.55;
-  font-weight: 400;
+.pace-text-xs {
+  font-size: 0.75rem;    /* 12px */
+  line-height: 1.4;
+  color: var(--pace-text-light);
 }
 ```
 
 ### Usage Guidelines
-- **Hierarchy**: Use heading levels semantically (H1 → H2 → H3 → H4)
+
+- **Site Title**: Use Agency FB sparingly—once per page or content section. This creates a distinctive brand presence without overwhelming the design.
+- **Primary Headings**: Use Bahnschrift Light Condensed for H1 elements and main section titles to establish clear hierarchy.
+- **Secondary Headings**: Use Segoe UI for H2-H5 elements to maintain readability and consistency.
+- **Body Text**: Use Segoe UI for all body text, maintaining excellent readability across all devices.
+- **Hierarchy**: Follow semantic heading structure (H1 → H2 → H3 → H4 → H5)
 - **Line Height**: Optimized for readability with adequate breathing room
 - **Color Contrast**: All text meets WCAG AA standards (4.5:1 minimum)
 - **Responsive**: Font sizes scale appropriately across devices
+
+### Font Fallbacks
+
+The system includes comprehensive fallbacks to ensure consistent appearance across all platforms:
+- **Agency FB**: Falls back to Arial Narrow, Helvetica Neue, Arial, sans-serif
+- **Bahnschrift Light Condensed**: Falls back to Bahnschrift Light, Bahnschrift, Arial Narrow, Helvetica Neue, Arial, sans-serif
+- **Segoe UI**: Falls back to system fonts (-apple-system, BlinkMacSystemFont, Roboto, sans-serif)
 
 ---
 
