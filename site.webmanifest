@@ -1,46 +1,50 @@
 {
-    "name": "Pace Style Guide",
-    "short_name": "Pace Guide",
-    "description": "Public assets and comprehensive style guide for Pace Applied Solutions - advancing technology solutions for modern business challenges",
-    "start_url": "/",
-    "display": "standalone",
-    "background_color": "#ffffff",
-    "theme_color": "#EB9110",
-    "orientation": "portrait-primary",
-    "scope": "/",
-    "lang": "en",
-    "icons": [
-        {
-            "src": "./assets/logo/android-chrome-192x192.png",
-            "sizes": "192x192",
-            "type": "image/png",
-            "purpose": "any maskable"
-        },
-        {
-            "src": "./assets/logo/android-chrome-512x512.png",
-            "sizes": "512x512",
-            "type": "image/png",
-            "purpose": "any maskable"
-        },
-        {
-            "src": "./assets/logo/apple-touch-icon.png",
-            "sizes": "180x180",
-            "type": "image/png",
-            "purpose": "any"
-        },
-        {
-            "src": "./assets/preview.png",
-            "sizes": "1200x630",
-            "type": "image/png",
-            "purpose": "any"
-        }
-    ],
-    "categories": ["business", "productivity", "developer"],
-    "screenshots": [
-        {
-            "src": "./assets/preview.png",
-            "sizes": "1200x630",
-            "type": "image/png"
-        }
-    ]
+  "name": "Pace Style Guide",
+  "short_name": "Pace Guide",
+  "description": "Public assets and comprehensive style guide for Pace Applied Solutions - advancing technology solutions for modern business challenges",
+  "start_url": "http://localhost:3000/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#EB9110",
+  "orientation": "portrait-primary",
+  "scope": "http://localhost:3000/",
+  "lang": "en",
+  "icons": [
+    {
+      "src": "http://localhost:3000/assets/logo/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "http://localhost:3000/assets/logo/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "http://localhost:3000/assets/logo/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "http://localhost:3000/assets/preview.png",
+      "sizes": "1200x630",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ],
+  "categories": [
+    "business",
+    "productivity",
+    "developer"
+  ],
+  "screenshots": [
+    {
+      "src": "http://localhost:3000/assets/preview.png",
+      "sizes": "1200x630",
+      "type": "image/png"
+    }
+  ]
 }
