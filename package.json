@@ -1,0 +1,27 @@
+{
+  "name": "pace-public-share",
+  "version": "1.0.0",
+  "description": "Pace Applied Solutions public style guide and brand assets",
+  "main": "index.html",
+  "scripts": {
+    "build": "node scripts/generate-config.js && node scripts/generate-preview.js",
+    "generate-config": "node scripts/generate-config.js",
+    "generate-preview": "node scripts/generate-preview.js"
+  },
+  "keywords": [
+    "style-guide",
+    "design-system",
+    "brand-assets",
+    "pace-applied-solutions"
+  ],
+  "author": "Pace Applied Solutions",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Pace-Applied-Solutions/PacePublicShare.git"
+  },
+  "private": true
+}
