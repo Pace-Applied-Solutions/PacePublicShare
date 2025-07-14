@@ -367,9 +367,8 @@ class PaceApp {
                 navViewExamples.onclick = () => this.showExamples();
             }
             
-            // Show examples and welcome message
+            // Show examples - notification is handled by the sign-in process itself
             this.showExamples();
-            this.showNotification(`Welcome back, ${account.name || 'User'}!`, 'success');
         } else {
             // User is not authenticated - show sign in button but still allow access to examples
             if (signInBtn) signInBtn.classList.remove('pace-hidden');
