@@ -238,6 +238,7 @@ class CustomPaceApp extends PaceApp {
 
 - **[Complete Style Guide](./docs/style-guide.html)**: Comprehensive design system documentation rendered as interactive HTML with full navigation and accessibility features
 - **[Authentication Setup](./docs/AUTHENTICATION_SETUP.md)**: Step-by-step guide for configuring Microsoft 365 authentication
+- **[Font Compatibility Guide](./docs/FONT_COMPATIBILITY.md)**: Cross-platform font compatibility solutions and troubleshooting for iOS and other platforms
 
 ### Documentation Features
 - **Interactive HTML Rendering**: Style guide documentation is now rendered as properly formatted HTML instead of raw markdown
@@ -245,6 +246,14 @@ class CustomPaceApp extends PaceApp {
 - **Responsive Design**: Documentation adapts to all screen sizes and devices
 - **Accessibility Compliant**: Meets WCAG 2.1 AA standards for screen readers and keyboard navigation
 - **Professional Presentation**: Clean, branded design with proper typography and code highlighting
+
+### Font Compatibility
+- **Local Font Files**: Primary brand fonts (Agency FB, Bahnschrift) hosted locally in assets/fonts/ for optimal performance
+- **Cross-Platform Support**: Enhanced font stacks ensure consistent rendering across Windows, iOS, Android, and other platforms
+- **Web Font Fallbacks**: Google Fonts integration provides cross-platform alternatives when local fonts aren't available
+- **iOS Optimization**: Specific fallbacks for iOS devices including Helvetica Neue Condensed and Avenir Next Condensed
+- **Performance Optimized**: Font loading strategy with `font-display: swap` for optimal performance
+- **Graceful Fallbacks**: Multiple fallback layers ensure readable text even when preferred fonts aren't available
 
 ## 🔧 Configuration
 
